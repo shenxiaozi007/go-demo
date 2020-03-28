@@ -53,4 +53,15 @@ func forDemo2() {
 		fmt.Println("大于25")
 	}
 
+	for i := 0; i < 5; i++ {
+		if i == 2 {
+			goto breakTag
+		}
+		fmt.Println(i)
+	}
+
+	//标签
+breakTag:
+	fmt.Println("tag2")
+
 }
