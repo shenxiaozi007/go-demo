@@ -52,7 +52,7 @@ func forDemo2() {
 	case age > 25:
 		fmt.Println("大于25")
 	}
-
+	//调到tag
 	for i := 0; i < 5; i++ {
 		if i == 2 {
 			goto breakTag

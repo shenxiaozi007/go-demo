@@ -14,4 +14,6 @@ func main() {
 	d := [...]int{1: 3, 3: 5}
 	fmt.Println(d)
 
+	//数组遍历
+
 }
