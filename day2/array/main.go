@@ -23,4 +23,12 @@ func main() {
 	for index, value := range b {
 		fmt.Println(index, value)
 	}
+	//多维数组
+	var f [3][2]int
+
+	f = [3][2]int{
+		[2]int{2, 3}, [2]int{3, 4}, [2]int{5, 6},
+	}
+	fmt.Println(f)
+
 }
