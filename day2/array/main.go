@@ -15,5 +15,12 @@ func main() {
 	fmt.Println(d)
 
 	//数组遍历
-
+	//第一种
+	for i := 0; i < len(b); i++ {
+		fmt.Println(b[i])
+	}
+	//第二种
+	for index, value := range b {
+		fmt.Println(index, value)
+	}
 }
