@@ -25,4 +25,9 @@ func main() {
 	} else {
 		fmt.Println("不存在")
 	}
+	//Go语言中使用for range遍历map。
+	for k, v := range userInfo {
+		fmt.Println(k, v)
+	}
+
 }
