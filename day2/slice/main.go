@@ -20,4 +20,14 @@ func main() {
 		sumSlice = append(sumSlice, i)
 		fmt.Printf("%v len:%d cap:%d ptr:%p\n", sumSlice, len(sumSlice), cap(sumSlice), sumSlice)
 	}
+
+	var citySlice []string
+
+	citySlice = append(citySlice, "北京")
+
+	p := []string{"test", "test2"}
+
+	citySlice = append(citySlice, p...)
+
+	fmt.Println(citySlice)
 }
