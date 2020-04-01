@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 func main() {
 	scoreMap := make(map[string]int, 8)
@@ -34,5 +38,15 @@ func main() {
 	delete(userInfo, "test1")
 	fmt.Println(userInfo)
 
-	//
+	//初始化随机数种子
+	rand.Seed(time.Now().UnixNano())
+
+	randMap := make(map[string]int, 200)
+
+	for i := 0; i < 100; i++ {
+		keyMap := fmt.Sprintf("key %d", i)
+		value := rand.Intn(100) //生成0~99的随机整数
+		randMap[keyMap] = value
+	}
+	fmt.Println(randMap)
 }
