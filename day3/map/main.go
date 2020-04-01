@@ -30,4 +30,9 @@ func main() {
 		fmt.Println(k, v)
 	}
 
+	//刪除键值对
+	delete(userInfo, "test1")
+	fmt.Println(userInfo)
+
+	//
 }
