@@ -75,5 +75,5 @@ func main() {
 
 	sliceMap[key] = value
 	fmt.Println(sliceMap)
-	
+
 }
