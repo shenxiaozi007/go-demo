@@ -33,7 +33,8 @@ func main() {
 		res := h(1, 342)
 		fmt.Println(res)
 	}
-
+	//匿名函数
+	anonymous()
 }
 
 func add(x, y int) int {
@@ -60,6 +61,22 @@ func do(s string) (func(int, int) int, error) {
 		err := errors.New("无法识别的操作符")
 		return nil, err
 	}
+}
+
+//匿名函数
+func anonymous() {
+	//将匿名函数保存到变量
+	add := func(x, y int) {
+		fmt.Println(x + y)
+	}
+
+	add(10, 20)
+
+	//自执行函数
+	func(x, y int) {
+		fmt.Println(x + y)
+	}(20, 40)
+
 }
 
 //闭包
