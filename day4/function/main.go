@@ -2,6 +2,9 @@ package main
 
 import "fmt"
 
+//定义全局变量
+var num int64 = 10
+
 func main() {
 	x := 10
 	y := 20
@@ -70,3 +73,18 @@ func calcThree(x int) []int {
 	data = append(data, x)
 	return data
 }
+
+//语句块定义的变量 只能在语句内使用
+func testLocalVal(x, y int) {
+	fmt.Println(x, y)
+	if x > 0 {
+		z := 100
+		fmt.Println(z)
+	}
+	//fmt.Println(z) //此处无法使用变量z
+}
+
+
+
+
+
