@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 //函数类型变量
 type calculation func(int, int) int
@@ -21,6 +24,16 @@ func main() {
 	//函数作为参数
 	g := calc(1, 2222, add)
 	fmt.Println(g)
+
+	//函数作为返回值
+	h, err := do("-")
+	if err != nil {
+		fmt.Println(err.Error())
+	} else {
+		res := h(1, 342)
+		fmt.Println(res)
+	}
+
 }
 
 func add(x, y int) int {
@@ -37,3 +50,16 @@ func calc(x, y int, op func(int, int) int) int {
 }
 
 //函数作为返回值
+func do(s string) (func(int, int) int, error) {
+	switch s {
+	case "+":
+		return add, nil
+	case "-":
+		return sub, nil
+	default:
+		err := errors.New("无法识别的操作符")
+		return nil, err
+	}
+}
+
+//闭包
