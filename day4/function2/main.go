@@ -61,6 +61,11 @@ func main() {
 	txtFunc := adder3(".txt")
 	fmt.Println(jpgFunc("test.jpg"))
 	fmt.Println(txtFunc("test"))
+
+	//闭包4
+	f1, f2 := adder4(10)
+	fmt.Println(f1(1), f2(2))
+
 }
 
 func add(x, y int) int {
@@ -133,4 +138,21 @@ func adder3(suffix string) func(string) string {
 		}
 		return name
 	}
+}
+
+//闭包4
+func adder4(base int) (func(int) int, func(int) int) {
+	add := func(i int) int {
+		base += i
+		fmt.Println("tt:", base, i)
+		return base
+	}
+
+	sub := func(i int) int {
+		fmt.Println("tt2:", base, i)
+		base -= i
+		return base
+	}
+
+	return add, sub
 }
