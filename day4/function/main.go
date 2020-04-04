@@ -83,8 +83,3 @@ func testLocalVal(x, y int) {
 	}
 	//fmt.Println(z) //此处无法使用变量z
 }
-
-
-
-
-
