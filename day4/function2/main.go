@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"strings"
 )
 
 //函数类型变量
@@ -54,6 +55,12 @@ func main() {
 
 	l2 := adder2(20)
 	fmt.Println(l2(20))
+
+	//闭包3
+	jpgFunc := adder3(".jpg")
+	txtFunc := adder3(".txt")
+	fmt.Println(jpgFunc("test.jpg"))
+	fmt.Println(txtFunc("test"))
 }
 
 func add(x, y int) int {
@@ -115,5 +122,15 @@ func adder2(x int) func(int) int {
 	return func(y int) int {
 		x += y
 		return x
+	}
+}
+
+//闭包3
+func adder3(suffix string) func(string) string {
+	return func(name string) string {
+		if !strings.HasSuffix(name, suffix) {
+			return name + suffix
+		}
+		return name
 	}
 }
