@@ -47,6 +47,13 @@ func main() {
 	fmt.Printf("type of f:%T \n", l)
 	fmt.Println(l(10))
 	fmt.Println(l(30))
+
+	//闭包2
+	var b2 = adder2(10)
+	fmt.Println(b2(20))
+
+	l2 := adder2(20)
+	fmt.Println(l2(20))
 }
 
 func add(x, y int) int {
