@@ -35,6 +35,10 @@ func main() {
 	}
 	//匿名函数
 	anonymous()
+
+	//闭包
+	var b = adder()
+	fmt.Printf("type of f:%T", b)
 }
 
 func add(x, y int) int {
@@ -64,6 +68,7 @@ func do(s string) (func(int, int) int, error) {
 }
 
 //匿名函数
+// 匿名函数因为没有函数名，所以没办法像普通函数那样调用，所以匿名函数需要保存到某个变量或者作为立即执行函数:
 func anonymous() {
 	//将匿名函数保存到变量
 	add := func(x, y int) {
@@ -80,3 +85,11 @@ func anonymous() {
 }
 
 //闭包
+//闭包指的是一个函数和与其相关的引用环境组合而成的实体。简单来说，闭包=函数+引用环境。 首先我们来看一个例子
+func adder() func(int) int {
+	var x int
+	return func(y int) int {
+		x += y
+		return x
+	}
+}
