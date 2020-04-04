@@ -3,10 +3,15 @@ class test{
     public function getMoneyFunc() {
         $rmb = 1;
         $func = function () use (&$rmb) {
-            echo "闭包里面" . $rmb . "\n";
+            echo "闭包里面---" . $rmb . "\n";
             $rmb++;
         };
-        echo "闭包外面" . $rmb . "\n";
+        $func2 = function () use (&$rmb) {
+            echo "闭包里面===" . $rmb . "\n";
+            $rmb++;
+        };
+        $func();
+        $func2();
         return $func;
     }
 }
@@ -14,5 +19,3 @@ class test{
 $test = new test();
 $func = $test->getMoneyFunc();
 $func();
-$func();
-$func2 = $test->getMoneyFunc();
