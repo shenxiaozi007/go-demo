@@ -36,9 +36,17 @@ func main() {
 	//匿名函数
 	anonymous()
 
+	fmt.Println("闭包开始")
 	//闭包
 	var b = adder()
-	fmt.Printf("type of f:%T", b)
+	fmt.Printf("type of f:%T \n", b)
+	fmt.Println(b(10))
+	fmt.Println(b(20))
+
+	l := adder()
+	fmt.Printf("type of f:%T \n", l)
+	fmt.Println(l(10))
+	fmt.Println(l(30))
 }
 
 func add(x, y int) int {
@@ -87,7 +95,16 @@ func anonymous() {
 //闭包
 //闭包指的是一个函数和与其相关的引用环境组合而成的实体。简单来说，闭包=函数+引用环境。 首先我们来看一个例子
 func adder() func(int) int {
-	var x int
+	var i int
+	return func(y int) int {
+		i += y
+		return i
+	}
+}
+
+//变量f是一个函数并且它引用了其外部作用域中的x变量，
+//此时f就是一个闭包。 在f的生命周期内，变量x也一直有效。 闭包进阶示例1：
+func adder2(x int) func(int) int {
 	return func(y int) int {
 		x += y
 		return x
