@@ -138,7 +138,7 @@ func adder3(suffix string) func(string) string {
 		}
 		return name
 	}
-}
+} 
 
 //闭包4
 func adder4(base int) (func(int) int, func(int) int) {
@@ -156,3 +156,24 @@ func adder4(base int) (func(int) int, func(int) int) {
 
 	return add, sub
 }
+
+//defer执行时机
+
+func f1() int {
+	x := 5
+	defer func() {
+		x++
+	}()
+
+	return x
+}
+
+func f2() {
+	fmt.Println("start")
+	defer fmt.Println(1)
+	defer fmt.Println(2)
+	defer fmt.Println(3)
+	fmt.Println("end")
+}
+
+
