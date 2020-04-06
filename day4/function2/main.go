@@ -69,6 +69,9 @@ func main() {
 	fmt.Println(defer1())
 	defer2()
 
+	funcA()
+	funcB()
+	funcC()
 }
 
 func add(x, y int) int {
@@ -183,8 +186,17 @@ func funcA() {
 	fmt.Println("func A")
 }
 
+//程序运行期间funcB中引发了panic导致程序崩溃，异常退出了。
+//这个时候我们就可以通过recover将程序恢复回来，继续往后执行。
 func funcB() {
-	fmt.Println("func B")
+	defer func() {
+		err := recover()
+		if err != nil {
+			fmt.Println("test recover")
+		}
+		fmt.Println("test B")
+	}()
+	panic("func B")
 }
 
 func funcC() {
