@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"strings"
 )
 
 //函数类型变量
@@ -57,14 +56,18 @@ func main() {
 	fmt.Println(l2(20))
 
 	//闭包3
-	jpgFunc := adder3(".jpg")
-	txtFunc := adder3(".txt")
-	fmt.Println(jpgFunc("test.jpg"))
-	fmt.Println(txtFunc("test"))
+	// jpgFunc := adder3(".jpg")
+	// txtFunc := adder3(".txt")
+	// fmt.Println(jpgFunc("test.jpg"))
+	// fmt.Println(txtFunc("test"))
 
 	//闭包4
 	f1, f2 := adder4(10)
 	fmt.Println(f1(1), f2(2))
+
+	//defer
+	fmt.Println(defer1())
+	defer2()
 
 }
 
@@ -131,14 +134,14 @@ func adder2(x int) func(int) int {
 }
 
 //闭包3
-func adder3(suffix string) func(string) string {
-	return func(name string) string {
-		if !strings.HasSuffix(name, suffix) {
-			return name + suffix
-		}
-		return name
-	}
-} 
+// func adder3(suffix string) func(string) string {
+// 	return func(name string) string {
+// 		if !strings.HasSuffix(name, suffix) {
+// 			return name + suffix
+// 		}
+// 		return name
+// 	}
+// }
 
 //闭包4
 func adder4(base int) (func(int) int, func(int) int) {
@@ -159,7 +162,7 @@ func adder4(base int) (func(int) int, func(int) int) {
 
 //defer执行时机
 
-func f1() int {
+func defer1() int {
 	x := 5
 	defer func() {
 		x++
@@ -168,7 +171,7 @@ func f1() int {
 	return x
 }
 
-func f2() {
+func defer2() {
 	fmt.Println("start")
 	defer fmt.Println(1)
 	defer fmt.Println(2)
@@ -176,4 +179,14 @@ func f2() {
 	fmt.Println("end")
 }
 
+func funcA() {
+	fmt.Println("func A")
+}
 
+func funcB() {
+	fmt.Println("func B")
+}
+
+func funcC() {
+	fmt.Println("func C")
+}
