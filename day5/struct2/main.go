@@ -8,6 +8,13 @@ type person struct {
 	age  int8
 }
 
+type member struct {
+	a int8
+	b int8
+	c int8
+	d int8
+}
+
 func main() {
 	//实例化
 	var p1 person
@@ -83,6 +90,15 @@ func main() {
 	// 必须初始化结构体的所有字段。
 	// 初始值的填充顺序必须与字段在结构体中的声明顺序一致。
 	// 该方式不能和键值初始化方式混用。
+
+	n := &member{
+		1, 2, 3, 4,
+	}
+
+	fmt.Printf("a- %p \n", &(*n).a)
+	fmt.Printf("a- %p \n", &n.b)
+	fmt.Printf("a- %p \n", &n.c)
+	fmt.Printf("a- %p \n", &n.d)
 
 }
 
