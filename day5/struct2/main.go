@@ -44,6 +44,31 @@ func main() {
 	p3.city = "test"
 	fmt.Printf("p3 = %#v \n", p3)
 	//p3.name = "test"其实在底层是(*p3).name = "test"，这是Go语言帮我们实现的语法糖。
+
+	//使用键值对对结构体进行初始化时，
+	//键对应结构体的字段，值对应该字段的初始值
+	p4 := person{
+		name: "小王子",
+		city: "beijin",
+		age:  12,
+	}
+	fmt.Printf("p4 = %#v\n", p4)
+
+	//也可以对结构体指针进行键值对初始化，例如：
+	p5 := &person{
+		name: "小碗中22",
+		city: "beijin2",
+		age:  10,
+	}
+	fmt.Printf("p5 = %#v\n", p5)
+
+	//当某些字段没有初始值的时候，该字段可以不写。此时，
+	//没有指定初始值的字段的值就是该字段类型的零值。
+	p6 := &person{
+		city: "北京",
+	}
+
+	fmt.Printf("p6= %#v \n", p6)
 }
 
 func test(p person) {
