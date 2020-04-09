@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go-demo/day5/pkg2"
+	pkg "go-demo/day5/pkg2"
 )
 
 type Person struct {
@@ -53,4 +54,5 @@ func main() {
 	fmt.Println(p)
 	//相加
 	fmt.Println(pkg2.Add(2, 3))
+	fmt.Println(pkg.Add(1, 3))
 }
