@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"unsafe"
+)
 
 type person struct {
 	name string
@@ -13,6 +16,9 @@ type member struct {
 	b int8
 	c int8
 	d int8
+}
+
+var v struct {
 }
 
 func main() {
@@ -99,6 +105,9 @@ func main() {
 	fmt.Printf("a- %p \n", &n.b)
 	fmt.Printf("a- %p \n", &n.c)
 	fmt.Printf("a- %p \n", &n.d)
+
+	//空结构体不占空间
+	fmt.Println(unsafe.Sizeof(v))
 
 }
 
