@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"go-demo/day5/pkg2"
+)
 
 type Person struct {
 	name string
@@ -37,6 +40,7 @@ func (p *Person) SetAge(age int) {
 }
 
 func main() {
+
 	//调用构造函数
 	p := newPerson("test", "meiguo", 12)
 	fmt.Printf("%v \n", p)
@@ -47,4 +51,6 @@ func main() {
 
 	p.SetAge(32)
 	fmt.Println(p)
+	//相加
+	fmt.Println(pkg2.Add(2, 3))
 }
