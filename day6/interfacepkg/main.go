@@ -20,7 +20,11 @@ type Mover2 interface {
 	move2()
 }
 
-//接口嵌套
+//MoverList is a interface接口嵌套
+type MoverList interface {
+	Mover
+	Mover2
+}
 
 func main() {
 	var x Sayer
