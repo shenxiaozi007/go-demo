@@ -64,6 +64,13 @@ type Person struct {
 	age int
 }
 
+//获取名称
+func (p Person) GetName() string {
+	return p.name
+}
+
+
+
 func main() {
 	var a float32 = 3.4
 	b := 3.5
@@ -108,5 +115,31 @@ func main() {
 	reflectSetValue2(&o)
 	fmt.Println(o)
 
-	
+	//空指针
+	var i *int
+	fmt.Println("i IsNil", reflect.ValueOf(i).IsNil())
+	fmt.Println("i IsValid", reflect.ValueOf(i).IsValid())
+
+	//isNil()和isValid()
+	// 实例化一个匿名结构体
+	u := struct {
+
+	}{}
+	//
+	y := Person{
+		name : "test",
+		age : 1,
+	}
+	// 尝试从结构体中查找"abc"字段
+	fmt.Println("u IsValid", reflect.ValueOf(u).FieldByName("test").IsValid())
+	// 尝试从结构体中查找"abc"方法
+	fmt.Println("u IsValid", reflect.ValueOf(u).MethodByName("abc").IsValid())
+
+	// 尝试从结构体中查找"name"字段
+	fmt.Println("y IsValid", reflect.ValueOf(y).FieldByName("name").IsValid())
+	// 尝试从结构体中查找"getName"方法  只能查找获取到公有的方法
+	fmt.Println("y IsValid", reflect.ValueOf(y).MethodByName("GetName").IsValid())
+
+
+
 }
