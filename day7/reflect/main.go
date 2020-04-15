@@ -21,6 +21,7 @@ func reflectTypeKind(x interface{}) {
 	fmt.Printf("type: %v kind : %v \n", v.Name(), v.Kind())
 }
 
+//反射获取值
 func reflectValueOf(x interface{}) {
 	v := reflect.ValueOf(x)
 	fmt.Printf("value : %v \n", v)
@@ -36,6 +37,25 @@ func reflectValueReturn(x interface{}) int64 {
 	fmt.Printf("fdfdfd: %v --- %T \n", g, g)
 	//强转
  	return int64(g.Int())
+}
+
+//反射设置值
+/*func reflectSetValue1(x interface{}) {
+	v := reflect.ValueOf(x)
+
+	if v.Kind() == reflect.Int64 {
+		v.SetInt(300) //修改的是副本 ， reflect包会引发panic
+	}
+}*/
+
+//反射获取指针设置值
+func reflectSetValue2(x interface{}) {
+	v := reflect.ValueOf(x)
+
+	// 反射中使用Elem方法获取指针对应的值
+	if v.Elem().Kind() == reflect.Int64 {
+		v.Elem().SetInt(200)
+	}
 }
 
 //结构体
@@ -81,6 +101,12 @@ func main() {
 	fmt.Printf("日日日%v --- %T \n", t, t)
 
 	//通过反射设置变量的值
+	var o int64 = 100
+
+	//reflectSetValue1(o)
+	//用指针
+	reflectSetValue2(&o)
+	fmt.Println(o)
 
 	
 }
