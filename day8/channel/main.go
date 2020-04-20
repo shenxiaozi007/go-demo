@@ -34,7 +34,7 @@ func squarer(out chan<- int, in <-chan int) {
 //of the reader
 func printer(in <-chan int) {
 	for i := range in {
-		fmt.Println(i)
+		fmt.Printf("测试-%v \n", i)
 	}
 }
 
@@ -88,12 +88,12 @@ func main() {
 	//有的时候我们会将通道作为参数在多个任务函数间传递，很多时候我们在不同的任务函数中使用通道都会对其进行限制，比如限制通道在函数中只能发送或只能接收。
 	//Go语言中提供了单向通道来处理这种情况。例如，我们把上面的例子改造如下：
 
-	ch1 := make(chan int)
-	ch2 := make(chan int)
+	cha1 := make(chan int)
+	cha2 := make(chan int)
 
-	go counter(ch1)
-	go squarer(ch2, ch1)
-	printer(ch2)
+	go counter(cha1)
+	go squarer(cha2, cha1)
+	printer(cha2)
 
 
 }
