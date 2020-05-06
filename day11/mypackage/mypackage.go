@@ -1,7 +1,7 @@
-package mypackage
+package mypackage1
 
 import "fmt"
 
 func New() {
-	fmt.Println("mypackage.new")
+	fmt.Println("mypackage.new.fuck")
 }

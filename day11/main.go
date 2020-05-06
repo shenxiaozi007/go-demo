@@ -2,13 +2,10 @@ package main
 
 import (
 	"fmt"
-	"moduledemo/mypackage"  // 导入同一项目下的mypackage包
+	"github.com/huangxinchun/go-demo"
 )
 
 func main() {
-	mypackage.New()
+	go_demo.New()
 	fmt.Println("main")
-
-
-
 }
