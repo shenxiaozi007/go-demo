@@ -9,4 +9,6 @@ func main() {
 	mypackage.New()
 	fmt.Println("main")
 
+
+
 }
