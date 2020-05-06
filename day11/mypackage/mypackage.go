@@ -1,4 +1,4 @@
-package mypackage1
+package mypackage
 
 import "fmt"
 
