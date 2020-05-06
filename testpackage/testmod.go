@@ -3,5 +3,5 @@ package testpackage
 import "fmt"
 
 func TestNew() {
-	fmt.Println("fuck fff")
+	fmt.Println("fuck fff111")
 }
