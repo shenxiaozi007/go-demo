@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sync"
+	"time"
 )
 
 var s []int
@@ -17,30 +18,12 @@ func appendValue(test chan int) {
 	lock.Unlock()
 }
 
-func main() {
-
-	//map 非线程安全
-
-	m := make(map[int]int)
-
-	go func() {
-		for i := 0 ; i < 10000; i++ {
-			m[i] = i
-		}
-	}()
-
-	go func() {
-		for i := 0; i < 10000; i++ {
-			fmt.Println(m[i])
-		}
-	}()
-
-
+func main2() {
 	//切片是非线程安全的
 	test = make(chan int, 1)
-	for i := 0; i < 10000; i++ {
+	for p := 0; p < 10000; p++ {
 		wg.Add(1)
-		test <- i
+		test <- p
 		go appendValue(test)
 	}
 
@@ -48,8 +31,28 @@ func main() {
 		fmt.Println( k, ":" ,v)
 	}
 
-
 	wg.Wait()
 }
 
+func main() {
+	//map 非线程安全
+	m := make(map[int]int)
+
+	go func() {
+		lock.Lock()
+		for i := 0 ; i < 10000; i++ {
+			m[i] = i
+		}
+		lock.Unlock()
+	}()
+
+	go func() {
+		lock.Lock()
+		for i := 0; i < 10000; i++ {
+			fmt.Println(m[i])
+		}
+		lock.Unlock()
+	}()
+	time.Sleep(time.Second * 3)
+}
 
