@@ -28,7 +28,7 @@ func main2() {
 	}
 
 	for k, v := range s {
-		fmt.Println( k, ":" ,v)
+		fmt.Println(k, ":", v)
 	}
 
 	wg.Wait()
@@ -40,7 +40,7 @@ func main() {
 
 	go func() {
 		lock.Lock()
-		for i := 0 ; i < 10000; i++ {
+		for i := 0; i < 10000; i++ {
 			m[i] = i
 		}
 		lock.Unlock()
@@ -55,4 +55,3 @@ func main() {
 	}()
 	time.Sleep(time.Second * 3)
 }
-
