@@ -12,7 +12,7 @@ func main1() {
 	go func() {
 		for {
 			select {
-			case <- stop:
+			case <-stop:
 				fmt.Println("監控推出")
 				return
 			default:
@@ -21,32 +21,32 @@ func main1() {
 			}
 		}
 	}()
-	
+
 	time.Sleep(10 * time.Second)
 	fmt.Println("可以了。统计监听停止")
-	
+
 	stop <- true
 
-    //为了检测监控过是否停止，如果没有监控输出，就表示停止了
-    time.Sleep(5 * time.Second)
+	//为了检测监控过是否停止，如果没有监控输出，就表示停止了
+	time.Sleep(5 * time.Second)
 }
 
 //多个协程退出
 func main2() {
 	stopSingal := make(chan bool)
-	
+
 	//循环
 	for i := 1; i < 5; i++ {
-		go func (ch chan bool, number int)  {
+		go func(ch chan bool, number int) {
 			for {
 				select {
-					case v := <-ch:
+				case v := <-ch:
 					// 仅当 ch 通道被 close，或者有数据发过来(无论是true还是false)才会走到这个分支
 					fmt.Printf("监控器%v，接收到通道为：%v 监控结束。\n", number, v)
 					return
-					default:
-						fmt.Printf("监控器%v，正在监控中...\n", number)
-						time.Sleep(2 * time.Second)
+				default:
+					fmt.Printf("监控器%v，正在监控中...\n", number)
+					time.Sleep(2 * time.Second)
 				}
 			}
 		}(stopSingal, i)
@@ -59,12 +59,12 @@ func main2() {
 	time.Sleep(10 * time.Second)
 
 	//关闭所有的goroutine
-	
+
 	close(stopSingal)
 	// 等待5s，若此时屏幕没有输出 <正在监控中> 就说明所有的goroutine都已经关闭
-    time.Sleep( 5 * time.Second)
+	time.Sleep(5 * time.Second)
 
-    fmt.Println("主程序退出！！")
+	fmt.Println("主程序退出！！")
 }
 
 func main3() {
@@ -72,9 +72,9 @@ func main3() {
 
 	for i := 1; i < 5; i++ {
 		go func(ctx context.Context, number int) {
-			for  {
+			for {
 				select {
-				case v := <- ctx.Done():
+				case v := <-ctx.Done():
 					fmt.Printf("监控器 %v，接受到通道值为：%v, 监控结束。\n", number, v)
 					return
 				default:
@@ -91,11 +91,10 @@ func main3() {
 	cancel()
 
 	// 等待5s，若此时屏幕没有输出 <正在监控中> 就说明所有的goroutine都已经关闭
-	time.Sleep( 5 * time.Second)
+	time.Sleep(5 * time.Second)
 
 	fmt.Println("退出主程序")
 }
-
 
 func main4() {
 	messages := make(chan int, 10)
@@ -129,8 +128,9 @@ func main4() {
 }
 
 func main() {
+
 	message := make(chan int, 10)
-	
+
 	for i := 0; i < 10; i++ {
 		message <- i
 	}
@@ -139,7 +139,7 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	// consumer
-	
+
 	go main5test(ctx5, message)
 
 	time.Sleep(10 * time.Second)
@@ -147,24 +147,22 @@ func main() {
 	cancel()
 	// time.Sleep(5 * time.Second)
 	select {
-	case <- ctx.Done():
+	case <-ctx.Done():
 		time.Sleep(1 * time.Second)
 		fmt.Println("main process exit!")
 	}
-
 
 }
 
 func main5test(ctx context.Context, message chan int) {
 	ticker := time.NewTicker(1 * time.Second)
-		for _ = range ticker.C {
-			select {
-			case <-ctx.Done():
-				fmt.Println("child process interrupt...")
-                return
-            default:
-				fmt.Printf("send message: %d\n", <-message)
-			}
+	for _ = range ticker.C {
+		select {
+		case <-ctx.Done():
+			fmt.Println("child process interrupt...")
+			return
+		default:
+			fmt.Printf("send message: %d\n", <-message)
 		}
+	}
 }
-
