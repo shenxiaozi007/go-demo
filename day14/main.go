@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"sync"
 	"time"
@@ -51,7 +52,7 @@ func main2() {
 
 //通过通道关闭
 
-func main() {
+func main3() {
 
 	var exitChan chan bool
 
@@ -68,7 +69,7 @@ func main() {
 
 			}
 		}
-		LOOP
+		LOOP:
 	}()
 	time.Sleep(5 * time.Second)
 	exitChan <- false
@@ -76,4 +77,38 @@ func main() {
 
 }
 
-//
+//官方的方案
+func main4() {
+	ctx, cancel := context.WithCancel(context.Background())
+
+	//wg.Add(1)
+
+	go func(ctx context.Context) {
+
+		for  {
+			select {
+			case <-ctx.Done():
+				goto LOOP
+			default:
+				fmt.Println("worker")
+				time.Sleep(1 * time.Second)
+			}
+
+		}
+	LOOP:
+		//wg.Done()
+	}(ctx)
+	time.Sleep(5 * time.Second)
+
+	cancel()//通知子goroutine结束
+
+	//wg.Wait()
+
+	fmt.Println("over")
+}
+
+//如果子goroutine里面又有另一个goroutine。
+
+func main() {
+	context.WithCancel(context.Background())
+}
