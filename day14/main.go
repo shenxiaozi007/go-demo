@@ -108,7 +108,44 @@ func main4() {
 }
 
 //如果子goroutine里面又有另一个goroutine。
+func main5() {
+	cxt, cancel := context.WithCancel(context.Background())
+	wg.Add(2)
+	go func(ctx context.Context) {
 
-func main() {
-	context.WithCancel(context.Background())
+		//子goroutine
+		go func(ctx context.Context) {
+			for  {
+				select {
+				case <-ctx.Done():
+					fmt.Println("worker2 done")
+					goto LOOP
+				default:
+					fmt.Println("worker2")
+					time.Sleep(1 * time.Second)
+				}
+			}
+			LOOP:
+			wg.Done()
+		}(ctx)
+
+		for  {
+			select {
+			case <- ctx.Done():
+					fmt.Println("worker1 done")
+					goto LOOP
+			default:
+				fmt.Println("worker1")
+				time.Sleep(1 * time.Second)
+			}
+		}
+		LOOP:
+		wg.Done()
+	}(cxt)
+
+	time.Sleep(5 * time.Second)
+	cancel()
+
+	wg.Wait()
+	fmt.Println("over")
 }
