@@ -59,7 +59,7 @@ func doCall(ctx context.Context) {
 			fmt.Printf("call server api failed, err:%v\n", result.err)
 			return
 		}
-		defer result.resp.Body.Close()
+	defer result.resp.Body.Close()
 		data, _ := ioutil.ReadAll(result.resp.Body)
 		fmt.Printf("resp : %v \n ", string(data))
 	}
