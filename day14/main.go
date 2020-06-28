@@ -69,13 +69,18 @@ func main3() {
 
 			}
 		}
+<<<<<<< HEAD
 	Loop:
+=======
+		LOOP:
+>>>>>>> 7902b3ece337c03baffaa9c157da57f178aed9a7
 	}()
 	time.Sleep(5 * time.Second)
 	exitChan <- false
 	fmt.Println("over")
 }
 
+<<<<<<< HEAD
 //通过context来取消
 func main() {
 	context.WithCancel(context.Background())
@@ -84,4 +89,77 @@ func main() {
 	go func() {
 		
 	}()
+=======
+//官方的方案
+func main4() {
+	ctx, cancel := context.WithCancel(context.Background())
+
+	//wg.Add(1)
+
+	go func(ctx context.Context) {
+
+		for  {
+			select {
+			case <-ctx.Done():
+				goto LOOP
+			default:
+				fmt.Println("worker")
+				time.Sleep(1 * time.Second)
+			}
+
+		}
+	LOOP:
+		//wg.Done()
+	}(ctx)
+	time.Sleep(5 * time.Second)
+
+	cancel()//通知子goroutine结束
+
+	//wg.Wait()
+
+	fmt.Println("over")
+}
+
+//如果子goroutine里面又有另一个goroutine。
+func main5() {
+	cxt, cancel := context.WithCancel(context.Background())
+	wg.Add(2)
+	go func(ctx context.Context) {
+
+		//子goroutine
+		go func(ctx context.Context) {
+			for  {
+				select {
+				case <-ctx.Done():
+					fmt.Println("worker2 done")
+					goto LOOP
+				default:
+					fmt.Println("worker2")
+					time.Sleep(1 * time.Second)
+				}
+			}
+			LOOP:
+			wg.Done()
+		}(ctx)
+
+		for  {
+			select {
+			case <- ctx.Done():
+					fmt.Println("worker1 done")
+					goto LOOP
+			default:
+				fmt.Println("worker1")
+				time.Sleep(1 * time.Second)
+			}
+		}
+		LOOP:
+		wg.Done()
+	}(cxt)
+
+	time.Sleep(5 * time.Second)
+	cancel()
+
+	wg.Wait()
+	fmt.Println("over")
+>>>>>>> 7902b3ece337c03baffaa9c157da57f178aed9a7
 }
