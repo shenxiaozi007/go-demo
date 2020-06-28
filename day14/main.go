@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"sync"
 	"time"
@@ -51,7 +52,7 @@ func main2() {
 
 //通过通道关闭
 
-func main() {
+func main3() {
 
 	var exitChan chan bool
 
@@ -61,19 +62,26 @@ func main() {
 		for {
 			select {
 			case <-exitChan:
-				goto LOOP
+				goto Loop
 			default:
 				fmt.Println("worker")
 				time.Sleep(1 * time.Second)
 
 			}
 		}
-		LOOP
+	Loop:
 	}()
 	time.Sleep(5 * time.Second)
 	exitChan <- false
 	fmt.Println("over")
-
 }
 
-//
+//通过context来取消
+func main() {
+	context.WithCancel(context.Background())
+	wg.Add(1)
+
+	go func() {
+		
+	}()
+}
