@@ -11,7 +11,7 @@ import (
 
 type respData struct {
 	resp *http.Response
-	err error
+	err  error
 }
 
 func doCall(ctx context.Context) {
@@ -26,7 +26,6 @@ func doCall(ctx context.Context) {
 
 	respChan := make(chan *respData, 1)
 	req, err := http.NewRequest("GET", "http://127.0.0.1:8089", nil)
-
 	if err != nil {
 		fmt.Printf("new request failed, err: %v", err)
 		return
@@ -43,15 +42,15 @@ func doCall(ctx context.Context) {
 		fmt.Printf("client.do resp:%v, err:%v \n", resp, err)
 
 		rd := &respData{
-			resp : resp,
-			err : err,
+			resp: resp,
+			err:  err,
 		}
 		respChan <- rd
 		wg.Done()
 	}()
 
 	select {
-	case <- ctx.Done():
+	case <-ctx.Done():
 		fmt.Println("call api timeout")
 	case result := <-respChan:
 		fmt.Println("call server api success")
@@ -59,7 +58,7 @@ func doCall(ctx context.Context) {
 			fmt.Printf("call server api failed, err:%v\n", result.err)
 			return
 		}
-	defer result.resp.Body.Close()
+		defer result.resp.Body.Close()
 		data, _ := ioutil.ReadAll(result.resp.Body)
 		fmt.Printf("resp : %v \n ", string(data))
 	}
@@ -68,8 +67,7 @@ func doCall(ctx context.Context) {
 
 func main() {
 	//定义一个100毫秒的超时
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second * 3)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*3)
 	defer cancel()
 	doCall(ctx)
 }
-
