@@ -17,16 +17,16 @@ func main() {
 	fmt.Println(a)
 	fmt.Printf("%T", a)
 	//循环
-	for i := 0 ; i < 3 ; i ++ {
+	for i := 0; i < 3; i++ {
 		fmt.Println(a[i])
 	}
 
 	for val, key := range a {
-		fmt.Println(val,key)
+		fmt.Println(val, key)
 	}
 	//
 	for v, k := range b {
-		fmt.Println(v,k)
+		fmt.Println(v, k)
 	}
 	//每日练习 切片 切片是引用类型
 	//注意：通过var声明的零值切片可以在append()函数直接使用，无需初始化。
@@ -39,13 +39,13 @@ func main() {
 	fmt.Printf("test--%#v---", a2)
 	//a1[3] = 1
 	a1 = append(a1, 1)
-	a2 = append(a2,"test")
+	a2 = append(a2, "test")
 	a3 = append(a3, true)
-	fmt.Println(a1,a2,a3)
+	fmt.Println(a1, a2, a3)
 
 	a4 := a3
 	a4[0] = true
-	fmt.Println(a1,a2,a3,a4)
+	fmt.Println(a1, a2, a3, a4)
 
 	//每日练习 map[KeyType]ValueType
 	//map是引用类型 需要make初始化后才可以使用
@@ -98,8 +98,7 @@ func main() {
 	//按排序获取map值
 	for _, val := range sliceList {
 		mapStr := mapTest1[val]
-		fmt.Printf("%v---%v---\n",val, mapStr)
+		fmt.Printf("%v---%v---\n", val, mapStr)
 	}
-
 
 }
