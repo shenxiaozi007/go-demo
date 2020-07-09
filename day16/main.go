@@ -101,6 +101,4 @@ func main() {
 		fmt.Printf("%v---%v---\n", val, mapStr)
 	}
 
-	//每日练习
-
 }
