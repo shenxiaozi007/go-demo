@@ -6,17 +6,16 @@ import (
 	"sync"
 )
 
-func main() {
+//面试题一
+func main1() {
 	runtime.GOMAXPROCS(1)
 	wg := sync.WaitGroup{}
-
 	wg.Add(20)
-
 	for i := 0; i < 10; i++ {
 		go func() {
-			fmt.Println(i)
 			fmt.Println("A: ", i)
 			wg.Done()
+
 		}()
 	}
 
@@ -25,18 +24,47 @@ func main() {
 			fmt.Println("B: ", i)
 			wg.Done()
 		}()
+
 	}
+
 	wg.Wait()
 }
 
+//面试题二
+type People struct {
 
-10 2 * * * www php /data1/wwwroot/system/system/updateInfo/updateSystem.php
-0 2 * * 0 www php /data1/wwwroot/system/system/updateInfo/deleteNotice.php
-*/5 8-20 * * * www bash /data1/wwwroot/system/system/StockInfo.sh
-*/1 8-23 * * * www bash /data1/wwwroot/system/system/AutoKf.sh
-*/2 * * * * www bash /data1/wwwroot/system/system/VideoRecord.sh
-50 1,11,17 * * * www bash /data1/wwwroot/system/system/BakSql.sh
-03 8,11,13,16,20 * * * www bash /data1/wwwroot/system/system/SyncOrder.sh
-*/1 * * * * www bash /data1/wwwroot/system/system/StockNotice.sh
-*/5 8-20 * * * www bash /data1/wwwroot/system/system/ProductStockInfo.sh
-0 10,12,14,16,2 * * * www bash /data1/wwwroot/system/system/TotalMoneyAdviser.sh
+}
+
+func (p *People) ShowA() {
+	fmt.Println("show A")
+	p.ShowB()
+}
+
+func (p *People) ShowB() {
+	fmt.Println("show B")
+}
+
+type Teacher struct {
+	People
+}
+
+func (t *Teacher)  ShowB() {
+	fmt.Println("teacher show B")
+}
+
+func main2() {
+	t := Teacher{}
+	t.ShowA()
+}
+
+//面试题三
+func main() {
+	defer_call()
+}
+
+func defer_call() {
+	defer func() { fmt.Println("a") }()
+	defer func() { fmt.Println("b") }()
+	defer func() { fmt.Println("c") }()
+	panic("触发异常")
+}
