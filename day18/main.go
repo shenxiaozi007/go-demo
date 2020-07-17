@@ -4,14 +4,15 @@ import (
 	"fmt"
 	"runtime"
 	"sync"
+	"time"
 )
 
 //面试题一
 func main1() {
 	runtime.GOMAXPROCS(1)
 	wg := sync.WaitGroup{}
-	wg.Add(20)
-	for i := 0; i < 10; i++ {
+	wg.Add(200)
+	for i := 0; i < 100; i++ {
 		go func() {
 			fmt.Println("A: ", i)
 			wg.Done()
@@ -19,12 +20,11 @@ func main1() {
 		}()
 	}
 
-	for i := 0; i < 10; i++ {
-		go func() {
+	for i := 0; i < 100; i++ {
+		go func(i int) {
 			fmt.Println("B: ", i)
 			wg.Done()
-		}()
-
+		}(i)
 	}
 
 	wg.Wait()
@@ -58,7 +58,7 @@ func main2() {
 }
 
 //面试题三
-func main() {
+func main3() {
 	defer_call()
 }
 
@@ -68,3 +68,102 @@ func defer_call() {
 	defer func() { fmt.Println("c") }()
 	panic("触发异常")
 }
+
+func main4()  {
+	fmt.Println(test(2))
+}
+
+func test(i int) (str string) {
+	str = "11"
+	if i == 1 {
+		return "22"
+	}
+	return
+}
+//面试题四
+
+type UserAges struct {
+	ages map[string]int
+	sync.Mutex
+}
+
+func (ua *UserAges) Add(name string, age int) {
+	ua.Lock()
+	defer ua.Unlock()
+	ua.ages[name] = age
+}
+
+func (ua *UserAges) Get(name string) int {
+	ua.Lock()
+	defer ua.Unlock()
+	if age, ok := ua.ages[name]; ok {
+		return age
+	}
+	return -1
+}
+
+//面试题五
+func main5() {
+
+	ua := &UserAges{}
+	ua.ages = make(map[string]int)
+
+	for i := 0; i < 10000; i++ {
+		str1 := fmt.Sprintf("test+%v", i)
+		go func() {
+			ua.Add(str1, i)
+		}()
+	}
+
+	for i := 0; i < 10000; i++ {
+		str2 := fmt.Sprintf("test+%v", i)
+		go func() {
+			fmt.Println(ua.Get(str2))
+		}()
+	}
+	time.Sleep(1 * time.Second)
+}
+
+//面试题六
+func main6() {
+	runtime.GOMAXPROCS(1)
+	int_chan := make(chan int, 1)
+	string_chan := make(chan string, 1)
+
+	int_chan <- 1
+	string_chan <- "hello"
+
+	select {
+	case value := <-int_chan:
+		fmt.Println(value)
+	case value := <-string_chan:
+		panic(value)
+	}
+}
+
+//面试题七
+func main7() {
+	a := 1
+	b := 2
+
+	defer calc7("1", a, calc7("10", a, b))
+	a = 0
+	defer calc7("2", a, calc7("20", a, b))
+	b = 1
+}
+
+func calc7(index string, a, b int) int {
+	ret := a + b
+	fmt.Println(index, a, b, ret)
+	return ret
+}
+
+//面试题八
+func main8() {
+	s := make([]int, 5)
+	s = append(s, 1, 2, 3)
+	fmt.Println(s)
+	//[0 0 0 0 0 1 2 3]
+}
+
+
