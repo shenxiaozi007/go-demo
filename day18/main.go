@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-//面试题一
+//一
 func main1() {
 	runtime.GOMAXPROCS(1)
 	wg := sync.WaitGroup{}
@@ -30,7 +30,7 @@ func main1() {
 	wg.Wait()
 }
 
-//面试题二
+//二
 type People struct {
 
 }
@@ -57,7 +57,7 @@ func main2() {
 	t.ShowA()
 }
 
-//面试题三
+//三
 func main3() {
 	defer_call()
 }
@@ -80,7 +80,7 @@ func test(i int) (str string) {
 	}
 	return
 }
-//面试题四
+//四
 
 type UserAges struct {
 	ages map[string]int
@@ -102,7 +102,7 @@ func (ua *UserAges) Get(name string) int {
 	return -1
 }
 
-//面试题五
+//五
 func main5() {
 
 	ua := &UserAges{}
@@ -124,7 +124,7 @@ func main5() {
 	time.Sleep(1 * time.Second)
 }
 
-//面试题六
+//六
 func main6() {
 	runtime.GOMAXPROCS(1)
 	int_chan := make(chan int, 1)
@@ -141,7 +141,7 @@ func main6() {
 	}
 }
 
-//面试题七
+//七
 func main7() {
 	a := 1
 	b := 2
@@ -158,7 +158,7 @@ func calc7(index string, a, b int) int {
 	return ret
 }
 
-//面试题八
+//八
 func main8() {
 	s := make([]int, 5)
 	s = append(s, 1, 2, 3)
@@ -167,3 +167,11 @@ func main8() {
 }
 
 
+//九
+type threadSafeSet struct {
+	sync.RWMutex
+	s []interface{}
+}
+func (t *threadSafeSet) iter() <-chan interface{} {
+	ch := make(chan interface{})
+}
