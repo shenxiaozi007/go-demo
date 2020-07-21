@@ -167,11 +167,53 @@ func main8() {
 }
 
 
-//九
+//九 下面的迭代会有什么问题？
 type threadSafeSet struct {
 	sync.RWMutex
 	s []interface{}
 }
-func (t *threadSafeSet) iter() <-chan interface{} {
-	ch := make(chan interface{})
+
+func (set *threadSafeSet) Iter() <-chan interface{} {
+	// ch := make(chan interface{}) // 解除注释看看！
+	ch := make(chan interface{},len(set.s))
+	go func() {
+		set.RLock()
+
+		for elem,value := range set.s {
+			ch <- elem
+			println("Iter:",elem,value)
+		}
+
+		close(ch)
+		set.RUnlock()
+
+	}()
+	return ch
 }
+
+func main()  {
+
+	th := threadSafeSet{
+		s:[]interface{}{"1","2"},
+	}
+	fmt.Printf("%v", <-th.Itest())
+}
+
+func (s *threadSafeSet) Itest() <-chan interface{} {
+	ch := make(chan interface{}, len(s.s))
+	//ch := make(chan interface{})
+	go func() {
+		s.RLock()
+
+		for elem, value := range s.s {
+			ch <- elem
+			fmt.Println("Iter1:", elem, value)
+		}
+
+		close(ch)
+		s.RUnlock()
+	}()
+
+	return ch
+}
+
