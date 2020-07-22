@@ -173,32 +173,6 @@ type threadSafeSet struct {
 	s []interface{}
 }
 
-func (set *threadSafeSet) Iter() <-chan interface{} {
-	// ch := make(chan interface{}) // 解除注释看看！
-	ch := make(chan interface{},len(set.s))
-	go func() {
-		set.RLock()
-
-		for elem,value := range set.s {
-			ch <- elem
-			println("Iter:",elem,value)
-		}
-
-		close(ch)
-		set.RUnlock()
-
-	}()
-	return ch
-}
-
-func main()  {
-
-	th := threadSafeSet{
-		s:[]interface{}{"1","2"},
-	}
-	fmt.Printf("%v", <-th.Itest())
-}
-
 func (s *threadSafeSet) Itest() <-chan interface{} {
 	ch := make(chan interface{}, len(s.s))
 	//ch := make(chan interface{})
@@ -216,4 +190,38 @@ func (s *threadSafeSet) Itest() <-chan interface{} {
 
 	return ch
 }
+
+func main9()  {
+
+	th := threadSafeSet{
+		s:[]interface{}{"1","2"},
+	}
+	fmt.Printf("%v", <-th.Itest())
+}
+
+//十
+
+type People1 interface {
+	Speak(string) string
+}
+
+type Student1 struct {}
+
+func (stu *Student1) Speak(think string) (talk string) {
+	if think == "bitch" {
+		talk = "you are a good boy"
+	} else {
+		talk = "hi"
+	}
+	return
+}
+
+func main() {
+	var peo Student1 = Student1{}
+	think := "bitch"
+	fmt.Println(peo.Speak(think))
+}
+
+
+
 
