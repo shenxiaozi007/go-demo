@@ -216,12 +216,59 @@ func (stu *Student1) Speak(think string) (talk string) {
 	return
 }
 
-func main() {
-	var peo Student1 = Student1{}
+func TestPeople(p interface{})  {
+	switch p.(type) {
+	case People1:
+		fmt.Println("实现了people1")
+	case Student1:
+		fmt.Println("实现了Student1")
+	case notifier:
+		fmt.Println("notifier")
+	case User:
+		fmt.Println("User")
+	}
+}
+func main10() {
+	peo := Student1{}
+	TestPeople(peo)
 	think := "bitch"
 	fmt.Println(peo.Speak(think))
 }
 
 
+// 定义一个接口
 
+type notifier interface {
+	Notify()
+}
+
+type User struct {
+	Name string
+	Age  int
+}
+
+func (s *User) Notify() {
+	fmt.Println("name is: ", s.Name)
+}
+
+func (s User) Notify1() {
+	fmt.Println("name is111: ", s.Name)
+}
+
+
+func notifination(n notifier) {
+	n.Notify()
+}
+
+func notifination1(n User) {
+	n.Notify1()
+	n.Notify()
+}
+
+func main() {
+	u := User{"james", 33}
+	TestPeople(u)
+	//notifination(u)
+	notifination1(u)
+}
 
