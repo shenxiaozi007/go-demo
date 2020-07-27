@@ -247,14 +247,13 @@ type User struct {
 	Age  int
 }
 
-func (s *User) Notify() {
+func (s *User) Notify1() {
 	fmt.Println("name is: ", s.Name)
 }
 
-func (s User) Notify1() {
+func (s User) Notify() {
 	fmt.Println("name is111: ", s.Name)
 }
-
 
 func notifination(n notifier) {
 	n.Notify()
@@ -265,10 +264,41 @@ func notifination1(n User) {
 	n.Notify()
 }
 
-func main() {
+func main11() {
 	u := User{"james", 33}
 	TestPeople(u)
 	//notifination(u)
 	notifination1(u)
 }
 
+//面试题12
+
+func main() {
+
+	println(DeferFunc1(1))
+	println(DeferFunc2(1))
+	println(DeferFunc3(1))
+}
+
+func DeferFunc1(i int) (t int) {
+	t = i
+	defer func() {
+		t += 3
+	}()
+	return t
+}
+
+func DeferFunc2(i int) int {
+	t := i
+	defer func() {
+		t += 3
+	}()
+	return t
+}
+
+func DeferFunc3(i int) (t int) {
+	defer func() {
+		t += i
+	}()
+	return 2
+}

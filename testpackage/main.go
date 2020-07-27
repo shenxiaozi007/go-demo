@@ -6,60 +6,71 @@ import (
 )
 
 func main() {
-	wait := sync.WaitGroup{}
 
-	wait.Add(2)
+	//wait := sync.WaitGroup{}
+	//wait.Add(2)
+	intChan := make(chan int)
 
-	umInt := make(chan int, 1)
-	umStr := make(chan int, 1)
-	go putString(umInt, umStr, wait)
-	go putMumber(umInt, umStr, wait)
-
-	wait.Wait()
-	fmt.Println(3232)
+	//奇数
+	go one(intChan, wait)
+	//偶數
+	go two(intChan, wait)
+	intChan <- 0
+	//wait.Wait()
 }
 
-func putMumber(umInt chan int, umStr chan int, group sync.WaitGroup) {
-	defer close(umStr)
-	defer group.Done()
-
-	intStr := "12345678"
-	umInt <- 0
+func one(intChan chan int, waitInt sync.WaitGroup) {
+	defer waitInt.Done()
+	//str := "12345678"
+	str := []int{1, 2, 3, 4, 5, 6, 7, 8}
 	for {
-		for value := range umInt {
-
-			if value%2 != 1 {
-				if value+2 > len(intStr) {
-					umStr <- value
-					return
-				}
-				print(intStr[value : value+2])
-				umStr <- value + 1
-			} else {
-				umStr <- value
+		oneInt, ok := <-intChan
+		if !ok {
+			return
+		}
+		if oneInt%2 == 0 {
+			if oneInt == len(str) {
+				close(intChan)
+				fmt.Println("推出3")
+				return
 			}
+			print(str[oneInt])
+			intChan <- oneInt + 1
+		}else {
+			intChan <- oneInt
 		}
 
 	}
 }
 
-func putString(umInt chan int, umStr chan int, group sync.WaitGroup) {
-	defer close(umInt)
-	defer group.Done()
-
-	stringStr := "abcdefgi"
+func two(intChan chan int, waitInt sync.WaitGroup) {
+	defer waitInt.Done()
+	//str := "abcdefgi"
+	str := []string{"a", "b", "c", "d", "e", "f", "g", "h"}
 	for {
-		for value := range umStr {
-			if value%2 == 1 {
-				if value+2 > len(stringStr) {
-					umInt <- value
-					return
-				}
-				print(stringStr[value-1 : value+1])
-				umInt <- value + 1
-			} else {
-				umInt <- value
+		twoInt, ok := <-intChan
+		if !ok {
+			fmt.Println("推出2")
+			return
+		}
+		if twoInt%2 == 1 {
+			if twoInt >= len(str) {
+				return
 			}
+			print(str[twoInt])
+			intChan <- twoInt + 1
+		} else {
+			intChan <- twoInt
 		}
 	}
 }
+
+func test1(a []int) []int {
+	test := []int{1, 2, 3}
+
+	a = append(a, test...)
+	fmt.Println(a)
+	return a
+}
+
+
