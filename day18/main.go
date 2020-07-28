@@ -271,9 +271,9 @@ func main11() {
 	notifination1(u)
 }
 
-//面试题12
+//12
 
-func main() {
+func main12() {
 
 	println(DeferFunc1(1))
 	println(DeferFunc2(1))
@@ -301,4 +301,20 @@ func DeferFunc3(i int) (t int) {
 		t += i
 	}()
 	return 2
+}
+
+//13
+
+func main13() {
+	list := make([]int, 0)
+	list = append(list, 1)
+	fmt.Println(list)
+}
+
+//14
+func main()  {
+	s1 := []int{1, 2, 3}
+	s2 := []int{2, 3}
+	s2 = append(s1, s2...)
+	fmt.Println(s2)
 }
