@@ -304,7 +304,6 @@ func DeferFunc3(i int) (t int) {
 }
 
 //13
-
 func main13() {
 	list := make([]int, 0)
 	list = append(list, 1)
@@ -312,9 +311,24 @@ func main13() {
 }
 
 //14
-func main()  {
+func main14()  {
 	s1 := []int{1, 2, 3}
 	s2 := []int{2, 3}
 	s2 = append(s1, s2...)
 	fmt.Println(s2)
+}
+
+//15
+func Foo(x interface{}) {
+	fmt.Printf("%#v", x)
+	fmt.Println(x)
+	if x == nil {
+		fmt.Println("empty interface")
+		return
+	}
+	fmt.Println("non-empty interface")
+}
+func main() {
+	var x *int = nil
+	Foo(x)
 }
