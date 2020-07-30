@@ -328,7 +328,27 @@ func Foo(x interface{}) {
 	}
 	fmt.Println("non-empty interface")
 }
-func main() {
+func main15() {
 	var x *int = nil
 	Foo(x)
+}
+
+//16
+//考点：函数返回值类型
+//nil 可以用作 interface、function、pointer、map、slice 和 channel 的“空值”。但是如果不特别指定的话，Go 语言不能识别类型，所以会报错。报:cannot use nil as type string in return argument.
+func GetValue(m map[int]string, id int) (string, bool) {
+	if _, exist := m[id]; exist {
+		return "存在数据", true
+	}
+	return nil, false
+}
+
+func main()  {
+	intMap := map[int]string{
+		1 : "a",
+		2 : "bb",
+	}
+
+	v, err := GetValue(intMap, 2)
+	fmt.Println(v, err)
 }
