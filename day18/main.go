@@ -340,10 +340,10 @@ func GetValue(m map[int]string, id int) (string, bool) {
 	if _, exist := m[id]; exist {
 		return "存在数据", true
 	}
-	return nil, false
+	return "", false
 }
 
-func main()  {
+func main16()  {
 	intMap := map[int]string{
 		1 : "a",
 		2 : "bb",
@@ -351,4 +351,21 @@ func main()  {
 
 	v, err := GetValue(intMap, 2)
 	fmt.Println(v, err)
+}
+
+
+//17
+func test1(x int) (func(),func())  {
+	return func() {
+			println(x)
+			x+=10
+		}, func() {
+			println(x)
+		}
+}
+
+func main()  {
+	a, b := test1(100)
+	a()
+	b()
 }
