@@ -7,8 +7,8 @@ import (
 
 func main() {
 
-	//wait := sync.WaitGroup{}
-	//wait.Add(2)
+	wait := sync.WaitGroup{}
+	wait.Add(2)
 	intChan := make(chan int)
 
 	//奇数

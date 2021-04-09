@@ -20,6 +20,7 @@ func main1() {
 	}()
 
 	wg.Wait()
+
 	fmt.Println("over")
 }
 
@@ -54,6 +55,7 @@ func main2() {
 func main3() {
 
 	var exitChan chan bool
+
 	exitChan = make(chan bool)
 	go func() {
 		for {

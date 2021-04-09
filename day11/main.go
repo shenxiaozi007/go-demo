@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
+
+	go_demo "github.com/huangxinchun/go-demo"
 	"github.com/huangxinchun/go-demo/testpackage"
-	"github.com/huangxinchun/go-demo"
 )
 
 func main() {
