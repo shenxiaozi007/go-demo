@@ -75,6 +75,7 @@ func main() {
 }
 
 func DownloadImg() {
+	fmt.Println("test,11", len(chanImageUrls))
 	for url := range chanImageUrls{
 		filename := GetFilenameFromurl(url)
 		ok := DownloadFile(url, filename)
@@ -110,12 +111,12 @@ func CheckOk() {
 			break
 		}
 	}
+	waitGroup.Done()
 }
 
 //遍历链接到管道里面
 func getImgUrl(url string)  {
 	urls := getImgs(url)
-	fmt.Println(urls)
 	for _, urlVaule := range urls {
 		chanImageUrls <- urlVaule
 	}
