@@ -1,4 +1,4 @@
-package service
+package main
 
 import (
 	"fmt"
@@ -16,7 +16,6 @@ func TestSession_ReadWriter(t *testing.T) {
 
 	wg := sync.WaitGroup{}
 	wg.Add(2)
-
 	// 写数据的协程
 	go func() {
 		defer wg.Done()
@@ -26,6 +25,7 @@ func TestSession_ReadWriter(t *testing.T) {
 		}
 		conn, _ := lis.Accept()
 		s := Session{conn: conn}
+		//err = s.conn.Write([]byte(my_data))
 		err = s.Write([]byte(my_data))
 		if err != nil {
 			t.Fatal(err)
@@ -51,6 +51,6 @@ func TestSession_ReadWriter(t *testing.T) {
 			t.Fatal(err)
 		}
 		fmt.Println(string(data))
-		wg.Wait()
 	}()
+	wg.Wait()
 }
