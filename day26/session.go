@@ -1,4 +1,4 @@
-package main
+package day26
 
 import (
 	"encoding/binary"
