@@ -1,4 +1,4 @@
-package day26
+package service
 
 import (
 	"encoding/binary"

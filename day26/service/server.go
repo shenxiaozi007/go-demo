@@ -2,7 +2,6 @@ package service
 
 import (
 	"fmt"
-	"go-demo/day26"
 	"net"
 	"reflect"
 )
@@ -32,6 +31,7 @@ func (s *Server) Register(rpcName string, f interface{}) {
 
 	//若map中没有键
 	fVal := reflect.ValueOf(f)
+	fmt.Printf("%#v", fVal)
 	s.funcs[rpcName] = fVal
 }
 
@@ -41,7 +41,7 @@ func (s *Server) Run()  {
 	lis, err := net.Listen("tcp", s.addr)
 
 	if err != nil {
-		fmt.Println("监听 %s err : %v", s.addr, err)
+		fmt.Printf("监听 %s err : %v", s.addr, err)
 		return
 	}
 
@@ -50,7 +50,7 @@ func (s *Server) Run()  {
 		if err != nil {
 			return
 		}
-		serSession := day26.NewSession(conn)
+		serSession := NewSession(conn)
 		//使用rpc方式读取数据
 		b, err := serSession.Read()
 		if err != nil {
@@ -67,20 +67,21 @@ func (s *Server) Run()  {
 		f, ok := s.funcs[rpcData.Name]
 
 		if !ok {
-			fmt.Println("函数 %s 不存在", rpcData.Name)
+			fmt.Printf("函数 %s 不存在", rpcData.Name)
 			return
 		}
 
 		// 遍历解析客户端传来的参数。放切片里
 		inArgs := make([]reflect.Value, 0, len(rpcData.Args))
 		for _, arg := range rpcData.Args {
+
 			inArgs = append(inArgs, reflect.ValueOf(arg))
 		}
-
+		fmt.Printf("%#v \n", inArgs)
 		//反射调用方法
 		// 返回value类型，用于给客户端传递返回结果，out是所以的返回结果
 		out := f.Call(inArgs)
-
+		fmt.Printf("%#v", out)
 		//遍历out ，用于返回客户端，存到一个切片里
 		outArgs := make([]interface{}, 0, len(out))
 		for _, o := range out {
@@ -95,6 +96,5 @@ func (s *Server) Run()  {
 		if err != nil {
 			return
 		}
-
 	}
 }
