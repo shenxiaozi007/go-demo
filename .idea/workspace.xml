@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16c78239-56d4-47fe-b494-ac58a3a63f26" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/day29/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/day30/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/day31/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/day32/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,6 +98,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="go-demo" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$" />
+      <package value="go-demo" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
     <configuration name="go build go-demo" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
       <module name="go-demo" />
       <working_directory value="$PROJECT_DIR$/" />
