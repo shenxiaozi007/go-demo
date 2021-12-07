@@ -37,6 +37,56 @@ const (
     p = iota
 )
 
-func main()  {
+func main2()  {
     fmt.Println(x,y,z,k,p)
 }
+
+
+
+//func GetValue() int {
+func GetValue() interface{} {
+    return 1
+}
+
+func main3() {
+    i := GetValue()
+    switch i.(type) {
+    case int:
+        fmt.Println("int")
+    case string:
+        fmt.Println("string")
+    }
+}
+//编译失败。考点：类型选择，类型选择的语法形如：i.(type)，其中 i 是接口，
+//type 是固定关键字，需要注意的是，只有接口类型才可以使用类型选择。看下关于接口的文章。
+
+func hello() []string {
+    return nil
+}
+
+func main4()  {
+    h := hello
+    if h == nil {
+        fmt.Println("nil")
+    } else {
+        fmt.Println("not nil")
+    }
+}
+
+type person struct {
+    name string
+}
+
+func main5() {
+    var m map[person]int
+
+    p := person{"mike"}
+
+    var m1 map[string]interface{}
+    fmt.Println(m[p])
+    fmt.Println(m1["1"])
+}
+//打印一个 map 中不存在的值时，返回元素类型的零值。这个例子中，
+//m 的类型是 map[person]int，因为 m 中不存在 p，所以打印 int 类型的零值，即 0。
+
+func
