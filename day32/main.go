@@ -89,4 +89,16 @@ func main5() {
 //打印一个 map 中不存在的值时，返回元素类型的零值。这个例子中，
 //m 的类型是 map[person]int，因为 m 中不存在 p，所以打印 int 类型的零值，即 0。
 
-func
+func change(s ...string) {
+    s[0] = "GO"
+    s = append(s, "playground")
+    fmt.Println(s)
+}
+
+func main() {
+    welcome := []string{"hello", "world"}
+    change(welcome...)
+    fmt.Println(welcome)
+}
+
+//知识点：可变函数。
