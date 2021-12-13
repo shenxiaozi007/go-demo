@@ -51,13 +51,67 @@ func add(args ...int) int {
     for _, arg := range args {
         sum += arg
     }
+
     return sum
 }
 
-func main() {
+func main3() {
     add([]int{1, 2}...)
     add(1,2)
     add(1,2,7)
 }
 
 //ABD。知识点：可变函数。
+func main4() {
+    var s1 []int
+    var s2 = []int{}
+    if s2 == nil {
+        fmt.Println("nil")
+    } else {
+        fmt.Println("no nil")
+    }
+
+    if s1 == nil {
+        fmt.Println("nil")
+    } else {
+        fmt.Println("no nil")
+    }
+}
+
+//知识点：nil 切片和空切片。nil 切片和 nil 相等，一般用来表示一个不存在的切片；空切片和 nil 不相等，表示一个空的集合
+type A interface {
+    ShowA() int
+}
+
+type B interface {
+    ShowB() int
+}
+
+type Work struct {
+    i int
+}
+
+func (w Work) ShowA() int {
+    return w.i + 10
+}
+
+func (w Work) ShowB() int {
+    return w.i + 20
+}
+
+func main5()  {
+    c := Work{i : 3}
+    var a A = c
+    var b B = c
+
+    fmt.Println(a.ShowA())
+    fmt.Println(b.ShowB())
+}
+//知识点：接口。一种类型实现多个接口，结构体 Work 分别实现了接口 A、B，所以接口变量 a、b 调用各自的方法 ShowA()
+
+func main() {
+    s := [3]int{1, 2, 3}
+    a := s[:0]
+    b := s[:2]
+    c := s[1:2:cap(s)]
+}
