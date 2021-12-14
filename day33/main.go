@@ -109,9 +109,76 @@ func main5()  {
 }
 //知识点：接口。一种类型实现多个接口，结构体 Work 分别实现了接口 A、B，所以接口变量 a、b 调用各自的方法 ShowA()
 
-func main() {
+//切片 a、b、c 的长度和容量分别是多少？
+func main6() {
     s := [3]int{1, 2, 3}
-    a := s[:0]
-    b := s[:2]
-    c := s[1:2:cap(s)]
+    a := s[:0] //0 3
+    b := s[:2] //2 3
+    c := s[1:2:cap(s)] //1,2
+    fmt.Printf("%d%d", len(a), cap(a))
+    fmt.Printf("%d%d", len(b), cap(b))
+    fmt.Printf("%d%d", len(c), cap(c))
 }
+//a、b、c 的长度和容量分别是 0 3、2 3、1 2。知识点：数组或切片的截取操作。截取操作有带 2 个或者 3 个参数，形如：[i:j] 和 [i:j:k]，假设截取对象的底层数组长度为 l。在操作符 [i:j] 中，如果 i 省略，默认 0，如果 j 省略，默认底层数组的长度，
+//截取得到的切片长度和容量计算方法是 j-i、l-i。操作符 [i:j:k]，k 主要是用来限制切片的容量，但是不能大于数组的长度 l，截取得到的切片长度和容量计算方法是 j-i、k-i。
+
+
+func increaseA() int {
+    var i int
+    defer func() {
+        i++
+    }()
+    return i
+}
+
+func increaseB() (r int) {
+    defer func() {
+        r++
+    }()
+    return r
+}
+
+func deferC() (i int) {
+    defer func() {
+        fmt.Println(i)
+    }()
+
+    return 2
+}
+
+func main7() {
+    fmt.Println(increaseA())
+    fmt.Println(increaseB())
+    deferC()
+}
+// 知识点：defer、返回值。注意一下，increaseA() 的返回参数是匿名，increaseB() 是具名。关于 defer 与返回值的知识点
+
+type A1 interface {
+    ShowA1() int
+
+}
+
+type B1 interface {
+    ShowA1() int
+}
+
+type Work1 struct {
+    i int
+}
+
+func (w Work1) ShowA1() int {
+    return w.i + 10
+}
+
+func (w Work1) ShowB1() int {
+    return w.i + 20
+}
+
+func main()  {
+    var a A1 = Work1{3}
+    s := a.(Work1)
+    fmt.Println(s.ShowA1())
+    fmt.Println(s.ShowB1())
+}
+
+//知识点：类型断言

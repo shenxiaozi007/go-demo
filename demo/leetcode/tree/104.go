@@ -2,7 +2,6 @@ package tree
 
 import (
     "fmt"
-    "os"
 )
 
 //https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
@@ -15,23 +14,41 @@ type TreeNode struct {
 
 func MaxDepth(root *TreeNode) int {
 
-    node := []interface{}{3, 9, 20, 15, 7}
+    node := []interface{}{3, 9, 20, nil, nil, 15, 7}
 
     data := GetTree(root, node...)
     showTree(data)
+
+    //
     return 1
 }
 
 //生成二叉树
 func GetTree(treeNode *TreeNode, data ...interface{}) *TreeNode {
+    var mapTree =  map[int]*TreeNode{}
     //生成二叉树
-    for _, v := range data {
-        fmt.Println(v)
+    for k, v := range data {
+        //顺序插入
+        root := &TreeNode{}
+        if v == nil {
+            mapTree[k] = nil
+        } else {
+            root.Val = v.(int)
+            mapTree[k] = root
+        }
+        //二叉搜索树
         //treeNode = SaveSortTree(treeNode, v)
-        treeNode = saveTree(treeNode, v)
-    }
 
-    return treeNode
+    }
+    nowTreeNode := &TreeNode{}
+    nowTreeNode = mapTree[0]
+    nowTreeNode.Left = mapTree[1]
+    nowTreeNode.Right = mapTree[2]
+    nowTreeNode.Left.Left = mapTree[3]
+    nowTreeNode.Left.Right = mapTree[4]
+    nowTreeNode.Right.Left = mapTree[5]
+    nowTreeNode.Right.Right = mapTree[6]
+    return nowTreeNode
 }
 
 //保存树结构 有序二叉树
@@ -41,9 +58,13 @@ func SaveSortTree(root *TreeNode, data interface{}) *TreeNode {
         root = &TreeNode{}
     }
     if root.Val == 0 {
+        if data == nil {
+            return nil
+        }
         root.Val = data.(int)
         return root
     }
+
     if data.(int) < root.Val {
         root.Left = SaveSortTree(root.Left, data)
     }
@@ -61,25 +82,6 @@ func SaveSortTree(root *TreeNode, data interface{}) *TreeNode {
     return root
 }
 
-//保存二叉树 无序
-func saveTree(root *TreeNode, data ...interface{}) *TreeNode {
-    num := 1
-    fmt.Println(data[0:num])
-    os.Exit(1)
-    if data == nil {
-        return nil
-    }
-
-    if root == nil {
-        root = &TreeNode{}
-    }
-    if root.Val == 0 {
-        root.Val = data[0].(int)
-        return root
-    }
-
-    return root
-}
 /**
     前序遍历
  */
@@ -91,8 +93,14 @@ func showTree(root *TreeNode) {
     if root.Val == 0 {
         return
     }
-    fmt.Println(root.Val)
     showTree(root.Left)
     showTree(root.Right)
+    fmt.Println(root.Val)
     return
+}
+
+//计算深度
+
+func light(root *TreeNode)  {
+    
 }
