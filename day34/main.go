@@ -41,6 +41,10 @@ func (t *test) close() {
 func main()  {
     ts := []test{{"a"}, {"b"}, {"c"}}
     for _, t := range ts {
-        defer t.close()  // 会输出 三个c
+        //defer ts.close()  // 会输出 三个c
+        // ts := t  用一个值保存
+        defer func(t test) {
+            t.close()
+        }(t)
     }
 }
