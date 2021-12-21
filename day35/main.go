@@ -144,10 +144,62 @@ func (stu1 Student) Speak(think string) (talk string) {
     return
 }
 
-func main()  {
+func main8()  {
     var peo People = Student{}
     think := "speak"
     fmt.Println(peo.Speak(think))
 }
 
 //编译错误 Student does not implement People (Speak method has pointer receiver)，值类型 Student 没有实现接口的 Speak() 方法，而是指针类型 *Student 实现该方法。
+const (
+    a1 = iota
+    b1 = iota
+)
+
+const (
+    name = "name"
+    c1 = iota
+    d1 = iota
+)
+func main10()  {
+    fmt.Println(a1)
+    fmt.Println(b1)
+    fmt.Println(c1)
+    fmt.Println(d1)
+}
+
+//参考答案及解析：0 1 1 2。知识点：iota 的用法。
+//iota可以理解成const块中的行索引
+//iota 是 golang 语言的常量计数器，只能在常量的表达式中使用。
+//
+//iota 在 const 关键字出现时将被重置为0，const中每新增一行常量声明将使 iota 计数一次。
+//
+//推荐阅读：
+//
+//https://studygolang.com/articles/2192
+
+
+type People1 interface {
+    Show()
+}
+type Student1 struct {
+
+}
+
+func (stu *Student1) Show() {
+
+}
+func main()  {
+    var s *Student1
+    if s == nil {
+        fmt.Println("s is nil")
+    } else {
+        fmt.Println("s is not nil")
+    }
+    var p People1 = s
+    if p == nil {
+        fmt.Println("p is nil")
+    } else {
+        fmt.Println("p is not nil")
+    }
+}
