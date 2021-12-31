@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+)
 
 func main1()  {
 	slice := make([]int, 5, 5)
@@ -65,7 +68,7 @@ func main3() {
 
 //参考答案及解析：s2 的输出结果错误。s2 的输出是 &{C} &{C} &{C}，在 第 30 天 的答案解析第二题，我们提到过，for range 使用短变量声明(:=)的形式迭代变量时，变量 i、value 在每次循环体中都会被重用，而不是重新声明。所以 s2 每次填充的都是临时变量 value 的地址，而在最后一次循环中，value 被赋值为{c}。因此，s2 输出的时候显示出了三个 &{c}。
 
-func main() {
+func main4() {
 	var m = map[string]int{
 		"A": 21,
 		"B": 22,
@@ -83,3 +86,27 @@ func main() {
 }
 
 //参考答案及解析：C。for range map 是无序的，如果第一次循环到 A，则输出 3；否则输出 2。
+
+func main5()  {
+	i := 1
+	i++
+	fmt.Println(i)
+}
+
+func main()  {
+	runtime.GOMAXPROCS(1)
+	var int_chan chan int = make(chan int, 1)
+	string_chan := make(chan string, 1)
+	int_chan <- 1
+	string_chan <- "hello"
+
+	select {
+		case value := <-int_chan:
+			fmt.Println(value)
+		case value := <-string_chan:
+			panic(value)
+	}
+
+}
+
+//参考答案及解析：select 会随机选择一个可用通道做收发操作，所以可能触发异常，也可能不会
