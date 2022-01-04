@@ -2,8 +2,78 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16c78239-56d4-47fe-b494-ac58a3a63f26" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/2021/day1/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2021/day37/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/day37/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/day37/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day1/const.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day1/const.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day1/if/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day1/if/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day1/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/day1/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day1/stringDemo/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day1/stringDemo/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day10/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/split/split.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day10/split/split.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day10/split/split_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day10/split/split_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day11/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day11/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day11/mypackage/mypackage.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day11/mypackage/mypackage.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day12/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day12/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day13/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day13/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day14/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day14/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day15/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day15/client/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day15/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day15/server/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day16/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day16/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day17/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day17/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day18/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day18/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day19/test.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day19/test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day2/array/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day2/array/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day2/slice/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day2/slice/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day20/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day20/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day20/test2.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day20/test2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day21/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day21/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day22/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day22/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day23/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day23/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day24/download.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day24/download.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day25/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day25/client/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day25/service/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day25/service/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day26/service/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day26/service/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day26/service/rpcData.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day26/service/rpcData.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day26/service/rpc_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day26/service/rpc_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day26/service/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day26/service/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day26/service/session.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day26/service/session.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day26/service/session_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day26/service/session_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day28/test.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day28/test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day29/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day29/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day3/map/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day3/map/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day30/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day30/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day31/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day31/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day32/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day32/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day33/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day33/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day34/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day34/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day35/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day35/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day36/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day36/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day37/main.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/day4/function/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day4/function/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day4/function2/function.php" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day4/function2/function.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day4/function2/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day4/function2/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day5/function/main" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day5/function/main" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day5/function/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day5/function/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day5/make/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day5/make/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day5/new/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day5/new/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day5/pkg2/pkg2.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day5/pkg2/pkg2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day5/struct/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day5/struct/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day5/struct2/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day5/struct2/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day5/zhizhen/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day5/zhizhen/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day6/interfaceNull/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day6/interfaceNull/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day6/interfacepkg/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day6/interfacepkg/interface.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day6/interfacepkg/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day6/interfacepkg/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day7/reflect/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day7/reflect/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day8/GOMAXPROCS/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day8/GOMAXPROCS/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day8/WaitGroup/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day8/WaitGroup/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day8/channel/main" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day8/channel/main" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day8/channel/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day8/channel/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day8/goroutine/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day8/goroutine/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day8/goroutinePool/main-test.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day8/goroutinePool/main-test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day8/goroutinePool/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day8/goroutinePool/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day9/socketClient/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day9/socketClient/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day9/socketService/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2021/day9/socketService/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,12 +162,16 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../company-module" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/day37" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="two.files.diff.last.used.folder" value="$PROJECT_DIR$/day37" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xinchun\work\src\go-demo\history" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\xinchun\work\src\go-demo" />
     </key>
