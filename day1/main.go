@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 const i1 = 100
 var j = 123
@@ -33,9 +36,10 @@ func main2()  {
 }
 
 //不能通过编译。知识点：函数返回值类型。nil 可以用作 interface、function、pointer、map、slice 和 channel 的“空值”。
-//但是如果不特别指定的话，Go 语言不能识别类型，所以会报错:cannot use nil as type string in return argument.
+//但是如果不特别指定的话，Go 语言不能识别类型，所以会报错:
+//cannot use nil as type string in return argument.
 
-func main() {
+func main3() {
 	x := []string{"a", "b", "c"}
 	for v := range x {
 		fmt.Println(v)
@@ -46,4 +50,57 @@ func main() {
 	}
 }
 
+type User struct{}
+type User1 User
+type User2 = User
 
+func (i User1) m1() {
+	fmt.Println("m1")
+}
+
+func (i User) m2() {
+	fmt.Println("m2")
+}
+
+func main4()  {
+	var i1 User1
+	var i2 User2
+	i1.m1()
+	i2.m2()
+}
+
+//参考答案及解析：能，输出m1 m2，第 2 行代码基于类型 User 创建了新类型 User1，
+//第 3 行代码是创建了 User 的类型别名 User2，注意使用 = 定义类型别名。因为 User2 是别名，
+//完全等价于 User，所以 User2 具有 User 所有的方法。但是 i1.m2() 是不能执行的，因为 User1 没有定义该方法。
+
+func main()  {
+	ch := make(chan int, 100)
+
+	// A
+	go func() {
+		for i := 0; i < 10; i++ {
+			ch <- i
+		}
+		close(ch)
+	}()
+
+	// B
+	go func() {
+		for {
+			a, ok := <-ch
+			if !ok {
+				fmt.Println("close")
+				return
+			}
+
+			fmt.Println("a: ", a)
+		}
+	}()
+
+	//close(ch)
+	fmt.Println("ok")
+	time.Sleep(time.Second * 10)
+}
+//参考答案及解析：程序抛异常。先定义下，第一个协程为 A 协程，第二个协程为 B 协程；当 A 协程还没起时，
+//主协程已经将 channel 关闭了，当 A 协程往关闭的 channel 发送数据时会 panic，
+//panic: send on closed channel。
