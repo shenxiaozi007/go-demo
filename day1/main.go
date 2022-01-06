@@ -73,7 +73,7 @@ func main4()  {
 //第 3 行代码是创建了 User 的类型别名 User2，注意使用 = 定义类型别名。因为 User2 是别名，
 //完全等价于 User，所以 User2 具有 User 所有的方法。但是 i1.m2() 是不能执行的，因为 User1 没有定义该方法。
 
-func main()  {
+func main5()  {
 	ch := make(chan int, 100)
 
 	// A
@@ -104,3 +104,34 @@ func main()  {
 //参考答案及解析：程序抛异常。先定义下，第一个协程为 A 协程，第二个协程为 B 协程；当 A 协程还没起时，
 //主协程已经将 channel 关闭了，当 A 协程往关闭的 channel 发送数据时会 panic，
 //panic: send on closed channel。
+
+func main6() {
+	ch := make(chan bool, 1)
+	Stop(ch)
+}
+
+//func Stop(stop <-chan bool)  {
+func Stop(stop chan bool)  {
+	close(stop)
+}
+
+//参考答案及解析：有方向的 channel 不可以被关闭。
+
+type Param map[string]interface{}
+
+type Show struct {
+	*Param
+}
+
+func main()  {
+	s := new(Show)
+	//s.Param["test"] = "2"
+
+	p := make(Param)
+	p["day"] = "2"
+	s.Param = &p
+
+	tmp := *s.Param
+	fmt.Println(tmp["data"])
+}
+//考答案及解析：存在两个问题：1.map 需要初始化才能使用；2.指针不支持索引。
