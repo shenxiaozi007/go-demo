@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+    "fmt"
+)
 
 func incr(p *int) int {
     *p++
@@ -63,3 +65,62 @@ func main4()  {
 
 //参考答案及解析：[1 2 3 4 5]。a 在 for range 过程中增加了两个元素
 //，len 由 5 增加到 7，但 for range 时会使用 a 的副本 a’ 参与循环，副本的 len 依旧是 5，因此 for range 只会循环 5 次，也就只获取 a 对应的底层数组的前 5 个元素。
+
+func main5()  {
+    //var x = nil
+    var x interface{} = nil
+    _ = x
+}
+//nil 用于表示 interface、函数、maps、slices 和 channels 的“零值”。
+//如果不指定变量的类型，编译器猜不出变量的具体类型，导致编译错误。
+
+type info struct {
+    result int
+}
+
+func work() (int, error) {
+    return 13, nil
+}
+
+func main6()  {
+    var data info
+    var err error
+    //data.result, err := work()
+    data.result, err = work()
+
+    if err != nil {
+        fmt.Println()
+    }
+}
+//不能使用短变量声明设置结构体字段值，修复代码：
+
+func main7() {
+    const x = 123
+    const y = 1.23
+    fmt.Println(y)
+}
+//编译可以通过。知识点：常量。常量是一个简单值的标识符，
+//在程序运行时，不会被修改的量。不像变量，常量未使用是能编译通过的。
+
+
+const (
+    x uint16 = 120
+    y
+    s = "abc"
+    z
+)
+func main8()  {
+    fmt.Printf("%T %v \n", y, y)
+    fmt.Printf("%T %v \n", z, z)
+
+}
+
+func main()  {
+    //var x string = nil
+    var x string = ""
+    if x == "" {
+    //if x = nil {
+        x = "default"
+    }
+}
+
