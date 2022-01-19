@@ -79,7 +79,7 @@ func main3() {
 	w.Wait()
 }
 
-func main() {
+func main4() {
 
 	//创建trace文件
 	f, err := os.Create("trace.out")
@@ -101,4 +101,7 @@ func main() {
 	fmt.Println("Hello World")
 }
 
+func main() {
+
+}
 
