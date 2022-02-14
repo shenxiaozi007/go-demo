@@ -189,7 +189,7 @@ type T struct {
     y *int
 }
 
-func main() {
+func main10() {
     i := 20
     t := T{10, &i}
     p := &t.x
@@ -201,3 +201,27 @@ func main() {
     fmt.Println(*t.y)
 }
 
+type TT struct {
+    //num int
+}
+
+func (tt *TT) foo() {
+    fmt.Println("fuck foo1")
+}
+
+func (tt TT) bar() {
+    fmt.Println("fuck bar1")
+}
+
+type SS struct {
+    *TT
+}
+
+func main()  {
+    s := SS{&TT{}}
+    fmt.Printf("%#v", s)
+    _ = s.foo
+    s.foo()
+    s.bar()
+    //_ = s.bar
+}
