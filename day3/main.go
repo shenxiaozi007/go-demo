@@ -100,8 +100,3 @@ func main4() {
 
 	fmt.Println("Hello World")
 }
-
-func main() {
-
-}
-

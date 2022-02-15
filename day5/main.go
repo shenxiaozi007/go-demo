@@ -207,6 +207,8 @@ type TT struct {
 
 func (tt *TT) foo() {
     fmt.Println("fuck foo1")
+
+    fmt.Println()
 }
 
 func (tt TT) bar() {
@@ -217,7 +219,7 @@ type SS struct {
     *TT
 }
 
-func main()  {
+func main11()  {
     s := SS{&TT{}}
     fmt.Printf("%#v", s)
     _ = s.foo
