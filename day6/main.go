@@ -33,7 +33,7 @@ func (d *data) test2(s string) {
 }
 
 
-func main() {
+func main1() {
     var wg sync.WaitGroup
     wg.Add(2)
     //testInt := 1
@@ -73,7 +73,7 @@ func (self *Data) PointerTest() { // func PointerTest(self *Data);
     fmt.Printf("Pointer: %p\n", self)
 }
 
-func main1() {
+func main2() {
     d := Data{}
     p := &d
     fmt.Printf("Data: %p\n", p)
@@ -87,3 +87,9 @@ func main1() {
 
 //当接受者是指针时，即使用值类型调用那么函数内部也是对指针的操作。
 //可用实例 value 或 pointer 调用全部方法，编译器自动转换。
+
+func main() {
+    var k = 1
+    var s = []int{1, 2}
+
+}
