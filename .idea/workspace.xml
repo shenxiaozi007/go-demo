@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16c78239-56d4-47fe-b494-ac58a3a63f26" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/day7/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my-gee/base1/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/day8/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/day6/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/day6/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/day7/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/day7/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/leetcode/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/demo/leetcode/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-gee/base1/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/my-gee/base1/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +65,9 @@
     <option name="height" value="1896" />
   </component>
   <component name="ProjectId" id="21g9dWu4fIJJ5Q1FCsOdshTJcST" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -96,7 +100,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../blog-go" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -104,14 +108,16 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xinchun\work\src\go-demo\day8" />
       <recent name="D:\xinchun\work\src\go-demo\history" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xinchun\work\src\go-demo\day10" />
       <recent name="D:\xinchun\work\src\go-demo\my-gee\base1" />
       <recent name="D:\xinchun\work\src\go-demo" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build github.com/huangxinchun/go-demo/day7">
+  <component name="RunManager" selected="Go Build.go build github.com/huangxinchun/go-demo/day11">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="go-demo" />
       <working_directory value="$PROJECT_DIR$" />
@@ -122,12 +128,21 @@
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
-    <configuration name="go build github.com/huangxinchun/go-demo/" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build day10.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="go-demo" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/day10/day10.go" />
+      <package value="go-demo" />
+      <directory value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/huangxinchun/go-demo/day11" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="go-demo" />
       <working_directory value="$PROJECT_DIR$" />
       <kind value="PACKAGE" />
-      <filePath value="$PROJECT_DIR$/day1/main.go" />
-      <package value="github.com/huangxinchun/go-demo/" />
+      <filePath value="$PROJECT_DIR$/day11/main.go" />
+      <package value="github.com/huangxinchun/go-demo/day11" />
       <directory value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
@@ -142,10 +157,10 @@
     </configuration>
     <configuration name="go build go-demo" type="GoApplicationRunConfiguration" factoryName="Go Application" nameIsGenerated="true">
       <module name="go-demo" />
-      <working_directory value="$PROJECT_DIR$/" />
+      <working_directory value="$PROJECT_DIR$/day8" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/day8/main.go" />
       <package value="go-demo" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
@@ -179,17 +194,19 @@
     </configuration>
     <list>
       <item itemvalue="Go Build.go build go-demo" />
-      <item itemvalue="Go Build.go build github.com/huangxinchun/go-demo/" />
       <item itemvalue="Go Build.go build main.go (1)" />
       <item itemvalue="Go Build.go build main.go" />
       <item itemvalue="Go Build.go build github.com/huangxinchun/go-demo/day7" />
+      <item itemvalue="Go Build.go build day10.go" />
+      <item itemvalue="Go Build.go build github.com/huangxinchun/go-demo/day11" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Build.go build github.com/huangxinchun/go-demo/day11" />
+        <item itemvalue="Go Build.go build day10.go" />
         <item itemvalue="Go Build.go build github.com/huangxinchun/go-demo/day7" />
         <item itemvalue="Go Build.go build main.go (1)" />
         <item itemvalue="Go Build.go build main.go" />
-        <item itemvalue="Go Build.go build github.com/huangxinchun/go-demo/" />
       </list>
     </recent_temporary>
   </component>
@@ -224,6 +241,157 @@
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day10/day10.go</url>
+          <line>109</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day10/day10.go</url>
+          <line>138</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day10/day10.go</url>
+          <line>129</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day10/day10.go</url>
+          <line>125</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day10/day10.go</url>
+          <line>127</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day10/day10.go</url>
+          <line>122</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day10/day10.go</url>
+          <line>120</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day11/main.go</url>
+          <line>40</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day11/main.go</url>
+          <line>26</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day11/main.go</url>
+          <line>28</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day11/main.go</url>
+          <line>32</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day11/main.go</url>
+          <line>45</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day11/main.go</url>
+          <line>44</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day11/main.go</url>
+          <line>43</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/day11/main.go</url>
+          <line>24</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>377</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>399</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>382</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>389</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>392</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>400</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>401</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>378</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>379</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>381</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>403</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>404</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>789</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://C:/Program Files/Go/src/runtime/chan.go</url>
+          <line>793</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://C:/GO/src/sync/waitgroup.go">
