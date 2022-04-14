@@ -9,7 +9,7 @@ import (
     "time"
 )
 
-func main()  {
+func main3() {
     wg := &sync.WaitGroup{}
 
     wg.Add(10)
@@ -21,7 +21,7 @@ func main()  {
     for i := 0; i < 10; i++ {
         go func(i int) {
             defer wg.Done()
-            for  {
+            for {
                 time.Sleep(time.Second * 2)
                 select {
                 case data, ok := <-ch:
@@ -47,7 +47,6 @@ func main()  {
     //结束
     fmt.Println("完成")
 }
-
 
 func main2() {
     rand.Seed(time.Now().UnixNano())
@@ -107,7 +106,7 @@ func main2() {
                 // optimized by the standard Go
                 // compiler, so they are very efficient.
                 select {
-                case <- stopCh:
+                case <-stopCh:
                     return
                 default:
                 }
@@ -120,7 +119,7 @@ func main2() {
                 // this is unacceptable, then the above
                 // try-receive operation is essential.
                 select {
-                case <- stopCh:
+                case <-stopCh:
                     return
                 case dataCh <- value:
                 }
@@ -139,7 +138,7 @@ func main2() {
                 // try to exit the receiver goroutine
                 // as early as possible.
                 select {
-                case <- stopCh:
+                case <-stopCh:
                     return
                 default:
                 }
@@ -152,7 +151,7 @@ func main2() {
                 // this is not acceptable, then the above
                 // try-receive operation is essential.
                 select {
-                case <- stopCh:
+                case <-stopCh:
                     return
                 case value := <-dataCh:
                     if value == Max-1 {
@@ -224,7 +223,7 @@ func main1() {
             case stoppedBy = <-closing:
                 exit(0, false)
                 return
-            case v := <- middleCh:
+            case v := <-middleCh:
                 select {
                 case stoppedBy = <-closing:
                     exit(v, true)
@@ -255,13 +254,13 @@ func main1() {
                 }
 
                 select {
-                case <- closed:
+                case <-closed:
                     return
                 default:
                 }
 
                 select {
-                case <- closed:
+                case <-closed:
                     return
                 case middleCh <- value:
                 }
@@ -283,4 +282,262 @@ func main1() {
     // ...
     wgReceivers.Wait()
     log.Println("stopped by", stoppedBy)
+}
+
+//多个接收者，一个发送者，发送者关闭channel表示‘没有值可以发送’
+//这是一个非常简单的情况，仅仅是让发送者在不想发送数据时候关闭channel。
+func main4() {
+    rand.Seed(time.Now().UnixNano())
+    log.SetFlags(0)
+
+    //最大
+    const Max = 1000
+    const NumReceivers = 10
+    wg := sync.WaitGroup{}
+    wg.Add(NumReceivers)
+
+    dataCh := make(chan int, 10)
+
+    // the sender
+    go func() {
+        for {
+            if value := rand.Intn(Max); value == 0 {
+                close(dataCh)
+                return
+            } else {
+                dataCh <- value
+            }
+        }
+    }()
+    // receivers
+    for i := 0; i < NumReceivers; i++ {
+        go func(i int) {
+            defer wg.Done()
+            for value := range dataCh {
+                log.Println(value)
+            }
+            fmt.Printf("i = %v 结束\r\n", i)
+        }(i)
+    }
+    wg.Wait()
+}
+
+//一个接收者，多个发送者，唯一的接收者通过关闭额外的channel通道表示‘请停止发送值到channel’
+//这是一个比上面较复杂的情况。我们不能为阻止数据传输让接收者关闭数据channel，
+//这样违反了channel关闭的原则，但是我们可以通过关闭额外的信号channel去通知发送者停止发送值。
+
+func main5() {
+    rand.Seed(time.Now().UnixNano())
+    log.SetFlags(0)
+
+    const Max = 10
+    const NumSenders = 10
+
+    wg := sync.WaitGroup{}
+    wg.Add(1)
+
+    //----
+    dataCh := make(chan int)
+    stopCh := make(chan struct{})
+
+    //many senders
+    for i := 0; i < NumSenders; i++ {
+        go func() {
+            for {
+                select {
+                case <-stopCh:
+                    return
+                case dataCh <- rand.Intn(Max):
+                }
+            }
+
+        }()
+    }
+
+    //one receiver
+    go func() {
+        defer wg.Done()
+        for value := range dataCh {
+            if value == Max-1 {
+                log.Println(value)
+                log.Println("关闭")
+                close(stopCh)
+                return
+            }
+            log.Println(value)
+        }
+    }()
+
+    wg.Wait()
+}
+
+//M个接收者，N个发送者，任何一个通过中间人关闭信号channel表示‘让我们结束游戏吧’
+//这是最复杂的情况。我们不能让任何一个发送者和接收者关闭数据channel。
+//我们也不能让任何一个接收者关闭信号channel通知所有的接收者和发送者结束游戏。
+//其中任何一种方式都打破了关闭原则。然而，我们可以引入一个中间角色去关闭信号channel。
+//在下面例子中有一个技巧是如何使用try-send操作去通知中间人关闭信号通道。
+
+func main6() {
+    rand.Seed(time.Now().UnixNano())
+    log.SetFlags(0)
+
+    const Max = 10000
+    //接收者
+    const NumReceivers = 10
+    //发送者
+    const NumSenders = 10
+
+    wg := sync.WaitGroup{}
+    wg.Add(NumReceivers)
+
+    //数据
+    dataCh := make(chan int)
+    //关闭chan
+    stopCh := make(chan struct{})
+    //中间信号
+    toStop := make(chan string, 1)
+    var stopStr string
+
+    go func() {
+        time.Sleep(5 * time.Second)
+        //中间信息
+        stopStr = <-toStop
+        close(stopCh)
+    }()
+
+    //发送者
+    for i := 0; i < NumSenders; i++ {
+        go func(id string) {
+            for {
+                value := rand.Intn(Max)
+                //不发送了
+                if value == 0 {
+                    select {
+                    case toStop <- "sender-" + id:
+                    default:
+                    }
+
+                    return
+                }
+
+                select {
+                case <-stopCh:
+                    return
+                //发送
+                case dataCh <- value:
+
+                }
+            }
+        }(strconv.Itoa(i))
+    }
+
+    //接收者
+    for i := 0; i < NumReceivers; i++ {
+        go func(id string) {
+            defer wg.Done()
+            for {
+                select {
+                //其中一个关闭也退出
+                case <-stopCh:
+                    return
+                case data := <-dataCh:
+                    if data == Max-1 {
+                        select {
+                        case toStop <- "sender-" + id:
+                        default:
+                        }
+                        return
+                    }
+                    log.Println(data)
+
+                }
+            }
+        }(strconv.Itoa(i))
+    }
+
+    wg.Wait()
+    log.Println("stop by", stopStr)
+}
+
+//我们也可以设置toStop的缓冲大小是发送者和接收者之和。那样我们就不需要try-send的select块去通知中间人。?
+func main() {
+    rand.Seed(time.Now().UnixNano())
+    log.SetFlags(0)
+
+    const Max = 100
+    //接收者
+    const NumReceivers = 10
+    //发送者
+    const NumSenders = 10
+
+    wg := sync.WaitGroup{}
+    wg.Add(NumReceivers)
+
+    //数据
+    dataCh := make(chan int)
+    //关闭chan
+    stopCh := make(chan struct{})
+    //中间信号
+    toStop := make(chan string, NumSenders+NumReceivers)
+    var stopStr string
+
+    go func() {
+       /* for {
+            time.Sleep(time.Second * 2)
+            if len(toStop) == NumSenders+NumReceivers {
+                fmt.Println("fuck")
+                fmt.Println(NumSenders+NumReceivers)
+                //中间信息*/
+                stopStr = <-toStop
+                close(stopCh)
+              /*  return
+            }
+        }*/
+    }()
+
+    //发送者
+    for i := 0; i < NumSenders; i++ {
+        go func(id string) {
+            for {
+                value := rand.Intn(Max)
+                //不发送了
+                if value == 0 {
+                    toStop <- "sender-" + id
+                    return
+                }
+
+                select {
+                case <-stopCh:
+                    return
+                //发送
+                case dataCh <- value:
+
+                }
+            }
+        }(strconv.Itoa(i))
+    }
+
+    //接收者
+    for i := 0; i < NumReceivers; i++ {
+        go func(id string) {
+            defer wg.Done()
+            for {
+                select {
+                //其中一个关闭也退出
+                case <-stopCh:
+                    return
+                case data := <-dataCh:
+                    if data == Max-1 {
+                        toStop <- "sender-" + id
+                        return
+                    }
+                    log.Println(data)
+
+                }
+            }
+        }(strconv.Itoa(i))
+    }
+
+    wg.Wait()
+    log.Println("stop by", stopStr)
 }
