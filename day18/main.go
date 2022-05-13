@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"runtime"
 	"sync"
 	"time"
@@ -216,12 +217,34 @@ func (stu *Student1) Speak(think string) (talk string) {
 	return
 }
 
-func main() {
+func main10() {
 	var peo Student1 = Student1{}
 	think := "bitch"
 	fmt.Println(peo.Speak(think))
 }
 
 
+func main() {
+	out := make(chan int)
+	wg := sync.WaitGroup{}
+	wg.Add(2)
 
+	go func() {
+		defer wg.Done()
+		rand.Seed(time.Now().Unix())
+		for i := 0; i < 5; i++ {
+			out <- rand.Intn(10)
+		}
+		close(out)
+	}()
+
+	go func() {
+		defer wg.Done()
+		for i := range out {
+			fmt.Println(i)
+		}
+	}()
+
+	wg.Wait()
+}
 
