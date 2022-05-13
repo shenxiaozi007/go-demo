@@ -217,13 +217,32 @@ func (stu *Student1) Speak(think string) (talk string) {
 	return
 }
 
+<<<<<<< HEAD:day18/main.go
 func main10() {
 	var peo Student1 = Student1{}
+=======
+func TestPeople(p interface{})  {
+	switch p.(type) {
+	case People1:
+		fmt.Println("实现了people1")
+	case Student1:
+		fmt.Println("实现了Student1")
+	case notifier:
+		fmt.Println("notifier")
+	case User:
+		fmt.Println("User")
+	}
+}
+func main10() {
+	peo := Student1{}
+	TestPeople(peo)
+>>>>>>> 593810a42fa52943cff2d10c87ec8d915f8498e3:2021/day18/main.go
 	think := "bitch"
 	fmt.Println(peo.Speak(think))
 }
 
 
+<<<<<<< HEAD:day18/main.go
 func main() {
 	out := make(chan int)
 	wg := sync.WaitGroup{}
@@ -237,6 +256,141 @@ func main() {
 		}
 		close(out)
 	}()
+=======
+// 定义一个接口
+
+type notifier interface {
+	Notify()
+}
+
+type User struct {
+	Name string
+	Age  int
+}
+
+func (s *User) Notify1() {
+	fmt.Println("name is: ", s.Name)
+}
+
+func (s User) Notify() {
+	fmt.Println("name is111: ", s.Name)
+}
+
+func notifination(n notifier) {
+	n.Notify()
+}
+
+func notifination1(n User) {
+	n.Notify1()
+	n.Notify()
+}
+
+func main11() {
+	u := User{"james", 33}
+	TestPeople(u)
+	//notifination(u)
+	notifination1(u)
+}
+
+//12
+
+func main12() {
+
+	println(DeferFunc1(1))
+	println(DeferFunc2(1))
+	println(DeferFunc3(1))
+}
+
+func DeferFunc1(i int) (t int) {
+	t = i
+	defer func() {
+		t += 3
+	}()
+	return t
+}
+
+func DeferFunc2(i int) int {
+	t := i
+	defer func() {
+		t += 3
+	}()
+	return t
+}
+
+func DeferFunc3(i int) (t int) {
+	defer func() {
+		t += i
+	}()
+	return 2
+}
+
+//13
+func main13() {
+	list := make([]int, 0)
+	list = append(list, 1)
+	fmt.Println(list)
+}
+
+//14
+func main14()  {
+	s1 := []int{1, 2, 3}
+	s2 := []int{2, 3}
+	s2 = append(s1, s2...)
+	fmt.Println(s2)
+}
+
+//15
+func Foo(x interface{}) {
+	fmt.Printf("%#v", x)
+	fmt.Println(x)
+	if x == nil {
+		fmt.Println("empty interface")
+		return
+	}
+	fmt.Println("non-empty interface")
+}
+func main15() {
+	var x *int = nil
+	Foo(x)
+}
+
+//16
+//考点：函数返回值类型
+//nil 可以用作 interface、function、pointer、map、slice 和 channel 的“空值”。但是如果不特别指定的话，Go 语言不能识别类型，所以会报错。报:cannot use nil as type string in return argument.
+func GetValue(m map[int]string, id int) (string, bool) {
+	if _, exist := m[id]; exist {
+		return "存在数据", true
+	}
+	return "", false
+}
+
+func main16()  {
+	intMap := map[int]string{
+		1 : "a",
+		2 : "bb",
+	}
+
+	v, err := GetValue(intMap, 2)
+	fmt.Println(v, err)
+}
+
+
+//17
+func test1(x int) (func(),func())  {
+	return func() {
+			println(x)
+			x+=10
+		}, func() {
+			println(x)
+		}
+}
+
+func main()  {
+	a, b := test1(100)
+	a()
+	b()
+}
+>>>>>>> 593810a42fa52943cff2d10c87ec8d915f8498e3:2021/day18/main.go
 
 	go func() {
 		defer wg.Done()
