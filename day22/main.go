@@ -98,7 +98,7 @@ func getConsistentHashBanlance(replicas int, fn Hash) *ConsistentHashBanlance {
     }
     return m
 }
-func main()  {
+func main2()  {
     var replicas int
     replicas = 3
     ban := getConsistentHashBanlance(replicas, nil)
@@ -108,4 +108,78 @@ func main()  {
     //my3, _ := ban.Get("fuck3")
     //fmt.Println(my, my2, my3)
     fmt.Println(my)
+}
+
+type SortSlice []int64
+
+func (ss SortSlice) Len() int {
+    return len(ss)
+}
+
+func (ss SortSlice) Less(i, j int) bool {
+    return ss[i] < ss[j]
+}
+
+func (ss SortSlice) Swap(i, j int)  {
+    ss[i], ss[j] = ss[j], ss[i]
+}
+
+func main()  {
+    sortSlice := SortSlice{1,2,44,55,2,5,6,8,0,3}
+    sort.Sort(sortSlice)
+    fmt.Println(sortSlice)
+    //num := binarySearch(55, sortSlice)
+    num1 := search(44, sortSlice)
+    //fmt.Println(num)
+    fmt.Println(num1)
+}
+
+//非递归
+func binarySearch(target int64, nums []int64) int {
+    left := 0
+    right := len(nums)
+    for left < right {
+        mid := (left +right) / 2
+        fmt.Println(right, left, mid)
+        if target == nums[mid] {
+            return mid
+        }
+
+        if target > nums[mid] {
+            left = mid + 1
+            continue
+        }
+
+        if target < nums[mid] {
+            right = mid - 1
+            continue
+        }
+    }
+    return -1
+}
+
+//递归
+func search(target int64, nums []int64) int {
+    return binarySearchRecursive(target, nums, 0, len(nums))
+}
+
+func binarySearchRecursive(target int64, nums []int64, left, right int) int {
+    if left > right {
+        return -1
+    }
+
+    mid := int(uint(left + right) >> 1)
+    fmt.Println(right, left, mid)
+    if target == nums[mid] {
+        return mid
+    }
+
+    if target > nums[mid] {
+        return binarySearchRecursive(target, nums, mid + 1, right)
+    }
+    if target < nums[mid] {
+        return binarySearchRecursive(target, nums, mid, right - 1)
+    }
+
+    return -1
 }
