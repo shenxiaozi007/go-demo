@@ -2,6 +2,7 @@ package blc02
 
 import (
     "bytes"
+    "fmt"
     "math/big"
 )
 
@@ -45,8 +46,25 @@ func (pow *ProofOfWork) Run() ([]byte, int64) {
     var hash [32]byte
     for {
         //获取字节数组
-        dataBytes := 
+        dataBytes := pow.prepareData(nonce)
+
+        fmt.Println(dataBytes)
+        //将hash存储到hashint
+        hashInt.SetBytes(dataBytes)
+        //判断hashInt是否小于Block里的target
+        /*
+           Com compares x and y and returns:
+           -1 if x < y
+           0 if x == y
+           1 if x > y
+        */
+        if pow.Target.Cmp(hashInt) == 1 {
+            break
+        }
+        nonce++
     }
+    fmt.Println()
+    return hash[:], int64(nonce)
 }
 
 //step5：根据block生成一个byte数组
@@ -62,4 +80,11 @@ func (pow *ProofOfWork) prepareData(nonce int) []byte {
         []byte{},
         )
     return data
+}
+
+//验证
+func (pow *ProofOfWork) IsValid() bool {
+    hashInt := new(big.Int)
+    hashInt.SetBytes(pow.Block.Hash)
+    return pow.Target.Cmp(hashInt) == 1
 }

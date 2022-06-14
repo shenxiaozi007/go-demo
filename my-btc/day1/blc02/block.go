@@ -19,16 +19,24 @@ type Block struct {
     TimeStamp int64
     //哈希值hash 32字节 64个16进制数
     Hash []byte
+
+    Nonce int64
 }
 
 //step2：创建新的区块
 
 func NewBlock(data string, PrevBlockHash []byte, height int64) *Block {
     //创建区块
-    block := &Block{height, PrevBlockHash, []byte(data), time.Now().Unix(), nil}
+    block := &Block{height, PrevBlockHash, []byte(data), time.Now().Unix(), nil, 0}
 
+    //
     //设置hash值
-    block.SetHash()
+    //block.SetHash()
+    //调用工作量证明
+    pow := NewProofOfwork(block)
+    hash, nonce := pow.Run()
+    block.Hash = hash
+    block.Nonce = nonce
     return block
 }
 
