@@ -2,7 +2,6 @@ package blc02
 
 import (
     "bytes"
-    "fmt"
     "math/big"
 )
 
@@ -40,7 +39,6 @@ func (pow *ProofOfWork) Run() ([]byte, int64) {
     //2.生成Hash
     //3.循环判断Hash的有效性，满足条件，跳出循环结束验证
     nonce := 0
-
     //var hashInt big.Int //用于存储新生成的hash
     hashInt := new(big.Int)
     var hash [32]byte
@@ -48,7 +46,7 @@ func (pow *ProofOfWork) Run() ([]byte, int64) {
         //获取字节数组
         dataBytes := pow.prepareData(nonce)
 
-        fmt.Println(dataBytes)
+        //fmt.Println(dataBytes)
         //将hash存储到hashint
         hashInt.SetBytes(dataBytes)
         //判断hashInt是否小于Block里的target
@@ -63,7 +61,6 @@ func (pow *ProofOfWork) Run() ([]byte, int64) {
         }
         nonce++
     }
-    fmt.Println()
     return hash[:], int64(nonce)
 }
 
