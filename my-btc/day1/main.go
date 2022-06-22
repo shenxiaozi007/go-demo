@@ -1,10 +1,8 @@
 package main
 
 import (
-    "crypto/sha256"
     "fmt"
-    "github.com/huangxinchun/go-demo/my-btc/day1/blc02"
-    "math/big"
+    "github.com/huangxinchun/go-demo/my-btc/day1/blc03"
 )
 
 func main()  {
@@ -29,7 +27,7 @@ func main()  {
 
     // 检测pow
     //1.创建一个big对象 0000000.....00001
-    target := big.NewInt(1)
+    /*target := big.NewInt(1)
 
     fmt.Printf("0x%x\n", target)
 
@@ -46,7 +44,21 @@ func main()  {
     blockChain.AddBlockToBlockChain("Send 100RMB To Wangergou",blockChain.Blocks[len(blockChain.Blocks)-1].Height+1,blockChain.Blocks[len(blockChain.Blocks)-1].Hash)
     blockChain.AddBlockToBlockChain("Send 300RMB To lixiaohua",blockChain.Blocks[len(blockChain.Blocks)-1].Height+1,blockChain.Blocks[len(blockChain.Blocks)-1].Hash)
     blockChain.AddBlockToBlockChain("Send 500RMB To rose",blockChain.Blocks[len(blockChain.Blocks)-1].Height+1,blockChain.Blocks[len(blockChain.Blocks)-1].Hash)
-    fmt.Println(blockChain)
-    pow := blc02.NewProofOfwork(blockChain.Blocks[0])
-    fmt.Printf("%v \n", pow.IsValid())
+    //fmt.Println(blockChain)
+    for _, block := range blockChain.Blocks{
+        pow := blc02.NewProofOfwork(block)
+        fmt.Printf("pow: %s \n", strconv.FormatBool(pow.IsValid()))
+    }*/
+
+
+    //测试创世区块存入数据库
+    blockchain := blc03.CreateBlockChainWithGenesisBlock("genesis block..")
+    fmt.Println(blockchain)
+    defer blockchain.DB.Close()
+    // 测试新添加区块
+    blockchain.AddBlockToBlockChain("to wang")
+    blockchain.AddBlockToBlockChain("to wang1")
+    blockchain.AddBlockToBlockChain("to wang3")
+    fmt.Println(blockchain)
+    blockchain.PrintChains()
 }
