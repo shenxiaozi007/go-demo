@@ -1,9 +1,6 @@
 package main
 
-import (
-    "fmt"
-    "github.com/huangxinchun/go-demo/my-btc/day1/blc03"
-)
+import "github.com/huangxinchun/go-demo/my-btc/day1/blc04"
 
 func main()  {
   /*  //1 测试
@@ -51,7 +48,7 @@ func main()  {
     }*/
 
 
-    //测试创世区块存入数据库
+    /*//测试创世区块存入数据库
     blockchain := blc03.CreateBlockChainWithGenesisBlock("genesis block..")
     fmt.Println(blockchain)
     defer blockchain.DB.Close()
@@ -60,5 +57,9 @@ func main()  {
     blockchain.AddBlockToBlockChain("to wang1")
     blockchain.AddBlockToBlockChain("to wang3")
     fmt.Println(blockchain)
-    blockchain.PrintChains()
+    blockchain.PrintChains()*/
+
+    //cli 操作
+    cli := blc04.CLi{}
+    cli.Run()
 }
